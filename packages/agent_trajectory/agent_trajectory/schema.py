@@ -80,8 +80,13 @@ class LlmCallRecord:
     response_text: str | None = None
     response_hash: str | None = None
     finish_reason: str | None = None
-    prompt_tokens: int | None = None
-    response_tokens: int | None = None
+    # NO TOKEN COUNTS HERE, DELIBERATELY. The ADK BigQuery Agent Analytics
+    # plugin (Path A) already records them on LLM_RESPONSE as
+    # content.usage.{prompt,completion,total}, and total is the one to budget
+    # from - reasoning tokens are billed and are in NEITHER of the other two.
+    # We captured prompt_tokens/response_tokens here before Path A was wired.
+    # Two sources of truth for one number is how they drift, so this plane no
+    # longer carries it. See sql/views/operations_views.sql.
     # --- THE TAINT-CRITICAL FIELDS -------------------------------------------
     # Which prior tool results were in this call's context window. Captured in
     # before_model; without it the FLOWED_INTO graph edge cannot be derived and
@@ -104,14 +109,18 @@ class ToolCallRecord:
     tool_name: str
     ts: str
     llm_call_id: str | None = None      # which LLM call DECIDED this
-    origin: str = "LOCAL"               # LOCAL | MCP | SUB_AGENT | A2A
+    # NO `origin` HERE. Path A records tool provenance properly as
+    # content.tool_origin (LOCAL | MCP | SUB_AGENT | A2A | TRANSFER_AGENT |
+    # TRANSFER_A2A). Ours was derived from the tool's Python class name and in
+    # practice only ever said LOCAL, so it was a worse copy of a native field.
     args_redacted: dict[str, Any] = field(default_factory=dict)
     args_hash: str | None = None
     justification: str | None = None    # the model's stated reason
     # --- outcome ---
     status: str = "ok"                  # ok | error | blocked
     error_class: str | None = None
-    latency_ms: int | None = None
+    # NO latency_ms - Path A has it as latency_ms.total_ms, alongside
+    # time_to_first_token_ms which we never captured at all.
     ended_at: str | None = None
     # --- manifest properties, denormalised so detections never join to config --
     sensitivity: str = "none"

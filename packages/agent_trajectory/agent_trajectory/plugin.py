@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import datetime as _dt
 import os
-import time
 import uuid
 from typing import Any
 
@@ -25,10 +24,6 @@ from .schema import (InvocationRecord, LlmCallRecord, SessionRecord,
                      ToolCallRecord, _hash)
 from .sinks import Sink, from_env
 
-_ORIGIN_BY_CLASS = {
-    "FunctionTool": "LOCAL", "MCPTool": "MCP", "McpTool": "MCP",
-    "AgentTool": "SUB_AGENT", "RemoteA2aAgent": "A2A",
-}
 _MAX_SUMMARY = 800
 
 
@@ -136,18 +131,6 @@ def _extract_reasoning(llm_response: Any) -> tuple[str | None, str | None]:
     return reasoning, response
 
 
-def _extract_usage(llm_response: Any) -> tuple[int | None, int | None]:
-    um = getattr(llm_response, "usage_metadata", None)
-    if um is None:
-        return None, None
-    return (getattr(um, "prompt_token_count", None),
-            getattr(um, "candidates_token_count", None))
-
-
-def _tool_origin(tool: Any) -> str:
-    return _ORIGIN_BY_CLASS.get(type(tool).__name__, "LOCAL")
-
-
 def _redact(args: dict) -> dict:
     """Keep shape and policy-relevant values; drop free text that may carry PII."""
     out = {}
@@ -173,7 +156,7 @@ class TrajectoryPlugin(BasePlugin):
         self.enforcer = Enforcer(self.manifest, enforcement_mode)
         self._llm_calls: dict[str, str] = {}      # function_call_id -> llm_call_id
         self._pending_llm: dict[str, LlmCallRecord] = {}   # invocation_id -> record
-        self._tool_starts: dict[str, tuple[float, ToolCallRecord]] = {}
+        self._tool_starts: dict[str, ToolCallRecord] = {}
         self._open_invocations: dict[str, InvocationRecord] = {}
         self._last_response: dict[str, str] = {}
         self._sessions: dict[str, SessionRecord] = {}
@@ -296,7 +279,6 @@ class TrajectoryPlugin(BasePlugin):
         if response:
             self._last_response[inv] = response
         rec.finish_reason = str(getattr(llm_response, "finish_reason", "") or "") or None
-        rec.prompt_tokens, rec.response_tokens = _extract_usage(llm_response)
         # Gemini returns no function_call.id, and ADK assigns its own only AFTER
         # this callback - so fc_id is empty in production and the DECIDED edge
         # (LlmCall -> ToolCall) cannot be keyed on it. Measured on the real
@@ -327,7 +309,6 @@ class TrajectoryPlugin(BasePlugin):
             ts=_now(),
             llm_call_id=self._llm_calls.get(fc_id) or self._pop_decision(
                 tool_context.invocation_id, tool.name),
-            origin=_tool_origin(tool),
             args_redacted=_redact(tool_args),
             args_hash=_hash(tool_args),
             sensitivity=pol.sensitivity,
@@ -345,24 +326,21 @@ class TrajectoryPlugin(BasePlugin):
             if verdict.action != SHADOW:
                 rec.status = "blocked"
                 rec.ended_at = _now()
-                rec.latency_ms = 0
                 self.enforcer.record(tool.name, tool_args, session_id, blocked=True)
                 self.sink.emit(rec)
                 # Returning a dict short-circuits the tool: it never executes.
                 return verdict.to_tool_result()
 
         self.enforcer.record(tool.name, tool_args, session_id, blocked=False)
-        self._tool_starts[fc_id] = (time.monotonic(), rec)
+        self._tool_starts[fc_id] = rec
         self._tool_seq.setdefault(session_id, []).append((tool.name, fc_id))
         return None
 
     async def after_tool_callback(self, *, tool, tool_args, tool_context, result):
         fc_id = getattr(tool_context, "function_call_id", None) or ""
-        started = self._tool_starts.pop(fc_id, None)
-        if started is None:
+        rec = self._tool_starts.pop(fc_id, None)
+        if rec is None:
             return None
-        t0, rec = started
-        rec.latency_ms = int((time.monotonic() - t0) * 1000)
         rec.ended_at = _now()
         rec.status = "error" if _is_error(result) else "ok"
         if rec.status == "error":
@@ -384,9 +362,8 @@ class TrajectoryPlugin(BasePlugin):
 
     async def on_tool_error_callback(self, *, tool, tool_args, tool_context, error):
         fc_id = getattr(tool_context, "function_call_id", None) or ""
-        started = self._tool_starts.pop(fc_id, None)
-        if started is not None:
-            _t0, rec = started
+        rec = self._tool_starts.pop(fc_id, None)
+        if rec is not None:
             rec.status = "error"
             rec.error_class = type(error).__name__
             rec.ended_at = _now()

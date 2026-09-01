@@ -60,16 +60,6 @@
     "mode": "NULLABLE"
   },
   {
-    "name": "prompt_tokens",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "response_tokens",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
     "name": "context_tool_call_ids",
     "type": "STRING",
     "mode": "REPEATED"

@@ -40,11 +40,6 @@
     "mode": "NULLABLE"
   },
   {
-    "name": "origin",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
     "name": "args_redacted",
     "type": "JSON",
     "mode": "NULLABLE"
@@ -67,11 +62,6 @@
   {
     "name": "error_class",
     "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "latency_ms",
-    "type": "INT64",
     "mode": "NULLABLE"
   },
   {

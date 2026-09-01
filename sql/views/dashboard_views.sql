@@ -5,6 +5,11 @@
 -- pages work, because all the logic lives here rather than in the report.
 
 -- PAGE 1 - Fleet overview ----------------------------------------------------
+-- `blocked` is the reason this view still exists after Path A. Call counts,
+-- error rates and latency are all in the NATIVE plane (v_tool_health), and
+-- better there - p50/p95 split by tool_origin rather than one average. What
+-- Google's plugin cannot know is which calls OUR enforcement stopped, because
+-- a blocked call never reaches the tool. Latency deliberately removed here.
 CREATE OR REPLACE VIEW `${PROJECT_ID}.${DATASET}.v_fleet_overview` AS
 SELECT
   TIMESTAMP_TRUNC(t.ts, HOUR)                    AS hour,
@@ -14,8 +19,7 @@ SELECT
   COUNTIF(t.status = 'error')                    AS errors,
   COUNTIF(t.status = 'blocked')                  AS blocked,
   COUNT(DISTINCT t.session_id)                   AS sessions,
-  SAFE_DIVIDE(COUNTIF(t.status = 'error'), COUNT(*)) AS error_rate,
-  AVG(t.latency_ms)                              AS avg_latency_ms
+  SAFE_DIVIDE(COUNTIF(t.status = 'error'), COUNT(*)) AS error_rate
 FROM `${PROJECT_ID}.${DATASET}.trajectory_tool_calls` t
 GROUP BY hour, agent_version, tool_name;
 
