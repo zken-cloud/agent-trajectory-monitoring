@@ -95,14 +95,30 @@ Everything above runs offline via `./run_all.sh`.
 | 1 | D1 refund / D3 loop / D4 aggregate | 1 each | 1 | 0 | **100%** | 17% | yes |
 | 2 | L2 shape (KMEANS) | 10 | 3 | 7 | 30% | 50% | no |
 | 2 | L2 transition surprisal | 13 | 2 | 11 | 15% | 33% | no |
-| 3 | L3 judge — `gemini-2.5-flash`, in BigQuery | 108 | 6 | 102 | 5.6% | **100%** | no |
+| 3 | L3 judge — `gemini-3.7-flash`, in BigQuery | 32 | 5 | 27 | 15.6% | 83% | no |
 
-The Layer 3 row still names `gemini-2.5-flash`: `AI.GENERATE_BOOL` can only
-reach **regional** models, and `gemini-3.6-flash` is served from `global` only —
-it fails there with *"project does not have access to it"*, which reads like an
-IAM problem and is not one. The agent, the red team and the external judge all
-run on `gemini-3.6-flash`; the in-BigQuery judge stays on 2.5 until a 3.x flash
-lands regionally, and it is a one-variable change (`JUDGE_MODEL`) when it does.
+The judge runs **inside BigQuery on `gemini-3.7-flash`**, and getting there is
+a trap worth knowing. `AI.GENERATE_BOOL` resolves a **bare** model name against
+the connection's region, and Gemini 3 is published only at `global` — so
+`endpoint => 'gemini-3.7-flash'` fails with *"not found or your project does not
+have access to it"*, which reads like an IAM problem and is not one.
+`'global/gemini-3.7-flash'` is rejected outright. The **fully-qualified global
+resource path works**:
+
+```sql
+endpoint => 'projects/<proj>/locations/global/publishers/google/models/gemini-3.7-flash'
+```
+
+Verified with a negative control — a bogus model in the same path form errors,
+so this is not a silent fallback to the default. This removed the reason
+`labs/judge_external.py` existed; it is kept for the two cases that are still
+real (trajectories not in BigQuery, decoupling inference from data project).
+
+Moving 2.5 → 3.7 traded recall for precision: **6/6 → 5/6** recall,
+**5.6% → 15.6%** precision, benign flagged **102 → 27**. The miss is **A5**, and
+it is the right thing to miss — repeating a read-only diagnostic is an
+operational anomaly, not a policy breach, and D3 catches it deterministically at
+Layer 1. A6 still fires, which is what keeps Layer 3 justified.
 
 Which layer catches which attack:
 

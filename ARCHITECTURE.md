@@ -307,20 +307,30 @@ in precision, portability and where they can run.
 | | In-BigQuery judge | External judge |
 |---|---|---|
 | File | `sql/layer3/judge.sql` | `labs/judge_external.py` |
-| Model | `gemini-2.5-flash` (regional) | `gemini-3.1-pro-preview` (**global only**) |
+| Model | `gemini-3.7-flash` (global, via full resource path) | `gemini-3.7-flash` (global) |
 | Call site | `AI.GENERATE_BOOL` | Vertex REST, outside BigQuery |
 | Measured | 103 flagged, **5.8%** precision, 100% recall | 56 flagged, **10.7%** precision, 100% recall |
 | Portability | **works anywhere** — the default | needs a project with the model available |
 
 Two constraints forced this, both discovered by running it:
 
-**BigQuery cannot reach a global-only model.** A BigQuery connection is regional,
-and `AI.GENERATE_BOOL` resolves the endpoint to
-`locations/<region>/publishers/google/models/<model>`. `gemini-3.1-pro-preview`
-is published only at `global`, so the query fails with *"Unsupported endpoint"*
-in every project. A higher-capability judge therefore has to run outside BigQuery
-— hence `judge_external.py`, which decouples the **data project** from the
-**inference project**.
+**BigQuery CAN reach a global-only model — but only via the full resource path.**
+This used to be the reason the external judge existed, and it no longer is.
+`AI.GENERATE_BOOL` resolves a **bare** model name against the connection's
+region, so `endpoint => 'gemini-3.7-flash'` fails with *"not found or your
+project does not have access to it"* — an IAM-shaped error that is not an IAM
+problem — and `'global/gemini-3.7-flash'` is rejected as an unsupported
+endpoint. Passing the whole path works:
+
+```sql
+endpoint => 'projects/<proj>/locations/global/publishers/google/models/gemini-3.7-flash'
+```
+
+Verified with a negative control (a bogus model in the same path form errors, so
+this is not a silent fallback to the default). The in-BigQuery judge is
+therefore the default on the same model as everything else, and
+`judge_external.py` survives only for the second constraint below plus the case
+where the trajectories are not in BigQuery at all.
 
 **Adversarial *generation* is allowlisted per project; judging is not.** Asked to
 write a Crescendo attack for an authorised workshop, one project complied and
