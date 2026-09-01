@@ -216,8 +216,13 @@ async def main() -> None:
                     help="real model id; omit for deterministic scripted plans")
     ap.add_argument("--concurrency", type=int, default=1,
                     help="concurrent conversations; >1 only makes sense with --model")
+    ap.add_argument("--retries", type=int, default=5,
+                    help="attempts per session on 429/RESOURCE_EXHAUSTED")
+    ap.add_argument("--backoff", type=float, default=15.0,
+                    help="seconds before the first retry; doubles each attempt")
     args = ap.parse_args()
 
+    RETRIES, BACKOFF = args.retries, args.backoff
     rng = random.Random(args.seed)
     plugin = make_plugin(enforcement="shadow", out_dir=args.out)
     model = None
@@ -245,19 +250,33 @@ async def main() -> None:
 
     counts: dict[str, int] = {}
     done = [0]
+    dropped = [0]
     sem = asyncio.Semaphore(max(1, args.concurrency))
 
     async def one(spec):
         cust, turns, plan, intent, outcome = spec
         async with sem:
-            try:
-                await run_conversation(turns, plugin=plugin, model=model,
-                                       plan=plan if model is None else None,
-                                       user_id=f"cust-{cust['customer_id']}",
-                                       outcome=outcome)
-            except Exception as exc:                 # one bad call must not kill the run
-                print(f"  session failed ({type(exc).__name__}): {str(exc)[:80]}")
-                return None
+            # Vertex quota - not wall clock - is the ceiling on a real-model run
+            # (WORKSHOP-PLAN 9.1). Measured: concurrency 8 with thinking enabled
+            # returns 429 RESOURCE_EXHAUSTED and, without this retry, the run
+            # simply logs and drops the session. A long run then finishes
+            # SHORT rather than failing, which is the bad way to lose data
+            # because the corpus still looks fine.
+            for attempt in range(RETRIES):
+                try:
+                    await run_conversation(turns, plugin=plugin, model=model,
+                                           plan=plan if model is None else None,
+                                           user_id=f"cust-{cust['customer_id']}",
+                                           outcome=outcome)
+                    break
+                except Exception as exc:
+                    transient = "RESOURCE_EXHAUSTED" in str(exc) or "429" in str(exc)
+                    if transient and attempt < RETRIES - 1:
+                        await asyncio.sleep(BACKOFF * (2 ** attempt))
+                        continue
+                    print(f"  session failed ({type(exc).__name__}): {str(exc)[:80]}")
+                    dropped[0] += 1
+                    return None
         counts[intent] = counts.get(intent, 0) + 1
         done[0] += 1
         if done[0] % 100 == 0:
@@ -270,7 +289,11 @@ async def main() -> None:
         for s in specs:
             await one(s)
     plugin.flush()
-    print(f"\ngenerated {args.count} benign sessions -> {args.out}")
+    made = args.count - dropped[0]
+    print(f"\ngenerated {made}/{args.count} benign sessions -> {args.out}")
+    if dropped[0]:
+        print(f"  WARNING: {dropped[0]} sessions dropped after {RETRIES} attempts - "
+              f"the corpus is SHORT, not complete")
     for k, v in sorted(counts.items(), key=lambda x: -x[1]):
         print(f"  {k:<22} {v:>5}  ({v/args.count:.1%})")
 
