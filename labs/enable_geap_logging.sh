@@ -27,7 +27,7 @@
 set -euo pipefail
 P="${GOOGLE_CLOUD_PROJECT:?export GOOGLE_CLOUD_PROJECT}"
 R="${GOOGLE_CLOUD_LOCATION:-us-central1}"
-M="${SHOPFLOW_MODEL:-gemini-3.6-flash}"
+M="${SHOPFLOW_MODEL:-gemini-3.7-flash}"
 DS="${TRAJECTORY_DATASET:-trajectory}"
 TBL="${GEAP_TABLE:-geap_request_response}"
 SAMPLING="${SAMPLING:-1.0}"

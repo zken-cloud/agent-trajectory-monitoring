@@ -1,29 +1,36 @@
-"""Layer 3 judge that runs OUTSIDE BigQuery, against a global-only model.
+"""Layer 3 judge that runs OUTSIDE BigQuery. OPTIONAL - see the note below.
 
-WHY THIS EXISTS - two constraints discovered by measurement, not by design:
+NOT THE DEFAULT ANY MORE. This file used to exist because AI.GENERATE_BOOL could
+not reach a global-only model, which made an external runner the ONLY way to
+judge on Gemini 3. That constraint is gone: BigQuery reaches `gemini-3.7-flash`
+when the endpoint is passed as a FULLY-QUALIFIED GLOBAL RESOURCE PATH -
 
-1. BigQuery cannot reach `gemini-3.1-pro-preview`. A BigQuery connection is
-   REGIONAL; AI.GENERATE_BOOL resolves the endpoint to
-   `locations/<region>/publishers/google/models/<model>`, and 3.1-pro is
-   published only at `global`. The query fails with "Unsupported endpoint".
+    endpoint => 'projects/<proj>/locations/global/publishers/google/models/gemini-3.7-flash'
 
-2. Adversarial *generation* is allowlisted per project. Asked to write a
-   Crescendo attack for an authorised workshop, zken-genai complied and
-   trajectory-monitoring refused outright (model-level refusal, safetyRatings
-   empty). JUDGING is unaffected - both projects returned the correct verdict.
+A BARE model name still fails, because AI.GENERATE_BOOL resolves it against the
+connection's region and Gemini 3 is published only at `global`; the error reads
+"not found or your project does not have access to it", which looks like an IAM
+problem and is not one. `global/<model>` also fails. Pass the whole path.
 
-So: inference project and data project are decoupled. Trajectories are read from
-and findings written to --source-project; the model call goes to
---inference-project at --location.
+sql/layer3/judge.sql is therefore the default and the portable path. Prefer it.
+
+WHAT THIS RUNNER IS STILL FOR - two real cases, neither of them the old one:
+
+1. The trajectories are not in BigQuery. The judge is a pure function of a
+   rendered trajectory; nothing about it needs a warehouse. This is the file to
+   point at when a customer asks how the ladder ports off BigQuery.
+
+2. Data project and inference project must be decoupled. Adversarial
+   *generation* is allowlisted per project - asked to write a Crescendo attack
+   for an authorised workshop, zken-genai complied and trajectory-monitoring
+   refused outright (model-level refusal, safetyRatings empty). That affects
+   redteam/attacks.py, NOT the judge: both projects judge correctly. But the
+   decoupling this runner demonstrates is how you would handle it.
 
     python labs/judge_external.py \\
         --source-project trajectory-monitoring \\
         --inference-project zken-genai \\
-        --model gemini-3.1-pro-preview --location global
-
-PORTABILITY NOTE: a customer will NOT have the allowlist. The in-BigQuery judge
-(sql/layer3/judge.sql, gemini-2.5-flash) is the portable default and scores 6/6
-on the shipped corpus; this runner is the higher-capability variant.
+        --model gemini-3.7-flash --location global
 """
 from __future__ import annotations
 
@@ -121,7 +128,7 @@ def main() -> int:
     ap.add_argument("--source-project", required=True)
     ap.add_argument("--inference-project", required=True)
     ap.add_argument("--dataset", default="trajectory")
-    ap.add_argument("--model", default="gemini-3.6-flash")
+    ap.add_argument("--model", default="gemini-3.7-flash")
     ap.add_argument("--location", default="global")
     ap.add_argument("--risk-sample", type=int, default=200)
     ap.add_argument("--min-turns", type=int, default=4)

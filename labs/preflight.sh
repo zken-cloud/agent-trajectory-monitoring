@@ -48,23 +48,27 @@ probe_model() {  # $1=model $2=location
        -H 'Content-Type: application/json' "$url" \
        -d '{"contents":[{"role":"user","parts":[{"text":"hi"}]}]}')" = "200" ]
 }
-# The agent model lives at `global`, not in a region: gemini-3.6-flash returns
+# The agent model lives at `global`, not in a region: gemini-3.7-flash returns
 # 404 from us-central1. Probe it where it actually runs.
-probe_model gemini-3.6-flash global \
-  && ok "gemini-3.6-flash at global (agent + red team + external judge)" \
-  || no "gemini-3.6-flash not available at global"
+probe_model gemini-3.7-flash global \
+  && ok "gemini-3.7-flash at global (agent + red team)" \
+  || no "gemini-3.7-flash not available at global"
 
-# ...and the in-BigQuery judge separately, because AI.GENERATE_BOOL can only
-# reach REGIONAL models. A global-only model fails there with "project does not
-# have access to it", which reads like an IAM problem and is not one.
-probe_model gemini-2.5-flash "$L" \
-  && ok "gemini-2.5-flash in $L (in-BigQuery judge)" \
-  || no "gemini-2.5-flash not available in $L"
-# 3.1-pro is published at GLOBAL only; a regional BigQuery connection cannot
-# reach it, so it is used by labs/judge_external.py rather than AI.GENERATE_BOOL.
-probe_model gemini-3.1-pro-preview global \
-  && ok "gemini-3.1-pro-preview at global (optional higher-precision judge)" \
-  || echo "  [WARN] gemini-3.1-pro-preview unavailable - fall back to the in-BigQuery judge"
+# ...and the SAME model through AI.GENERATE_BOOL, which is a genuinely different
+# path and fails differently. Gemini 3 is global-only and AI.GENERATE_BOOL
+# resolves a BARE model name against the connection's region, so `gemini-3.7-flash`
+# there returns "not found or your project does not have access to it" - an IAM-
+# shaped error that is not an IAM problem. The fully-qualified global resource
+# path IS honoured. This probe exists to catch a broken connection, not a broken
+# model: if the probe above passed and this one fails, it is the connection.
+if bq --project_id="$P" query --use_legacy_sql=false --format=none \
+     "SELECT AI.GENERATE_BOOL(('Is 2 greater than 1?'), connection_id => '$P.us.trajectory_ai',
+        endpoint => 'projects/$P/locations/global/publishers/google/models/gemini-3.7-flash').result" \
+     >/dev/null 2>&1; then
+  ok "AI.GENERATE_BOOL reaches gemini-3.7-flash (in-BigQuery judge)"
+else
+  no "AI.GENERATE_BOOL cannot reach gemini-3.7-flash - check the us.trajectory_ai connection"
+fi
 
 echo "Org policy:"
 # A real public-object read, not an unauthenticated bucket LIST (which 401s

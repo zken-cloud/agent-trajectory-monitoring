@@ -6,7 +6,7 @@ here, next to the attack, rather than in a spreadsheet that drifts.
 
     python redteam/attacks.py --list
     python redteam/attacks.py --run A3 --scripted
-    python redteam/attacks.py --run all --model gemini-3.6-flash
+    python redteam/attacks.py --run all --model gemini-3.7-flash
 """
 from __future__ import annotations
 
@@ -158,7 +158,7 @@ async def main() -> None:
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--scripted", action="store_true",
                     help="deterministic replay, no model quota used")
-    ap.add_argument("--model", default="gemini-3.6-flash")
+    ap.add_argument("--model", default="gemini-3.7-flash")
     ap.add_argument("--enforcement", default=None,
                     choices=[None, "shadow", "approve", "block"])
     ap.add_argument("--out", default=None, help="JSONL output dir (default: $TRAJECTORY_SINK)")

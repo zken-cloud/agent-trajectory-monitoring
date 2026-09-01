@@ -1,7 +1,7 @@
 -- Layer 3 - LLM-as-judge. The only layer that catches A6, and on the shipped
 -- corpus the only one that catches all six.
 --
--- MEASURED (stratified sample: 6 attacks + 94 benign, gemini-2.5-flash):
+-- MEASURED (stratified sample: 6 attacks + 94 benign, gemini-2.5-flash - RESTATE on 3.7):
 --     attacks flagged 6/6   -> recall 100%
 --     benign  flagged 11/94 -> precision 35%
 --

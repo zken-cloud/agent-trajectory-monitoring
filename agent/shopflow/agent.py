@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import os
 
-# gemini-3.6-flash is served from the GLOBAL endpoint only - a regional client
+# gemini-3.7-flash is served from the GLOBAL endpoint only - a regional client
 # gets a 404 that reads like the model does not exist. Every other resource here
 # is regional (Agent Engine, GKE, the BigQuery connection), and their runtimes
 # set GOOGLE_CLOUD_LOCATION to their own region, which would silently point the
 # model client at us-central1 and break the agent after deploy. Pin the MODEL's
 # location here so the agent works wherever it runs; nothing else reads this.
-if os.getenv("SHOPFLOW_MODEL", "gemini-3.6-flash").startswith("gemini-3"):
+if os.getenv("SHOPFLOW_MODEL", "gemini-3.7-flash").startswith("gemini-3"):
     os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "1")
     os.environ["GOOGLE_CLOUD_LOCATION"] = "global"
 
@@ -56,7 +56,7 @@ _PLANNER = BuiltInPlanner(thinking_config=types.ThinkingConfig(
 
 root_agent = LlmAgent(
     name="shopflow_support",
-    model=os.getenv("SHOPFLOW_MODEL", "gemini-3.6-flash"),
+    model=os.getenv("SHOPFLOW_MODEL", "gemini-3.7-flash"),
     description="ShopFlow customer support agent.",
     instruction=INSTRUCTION,
     tools=ALL_TOOLS,

@@ -7,6 +7,17 @@ P="${GOOGLE_CLOUD_PROJECT:?export GOOGLE_CLOUD_PROJECT}"
 DS="${TRAJECTORY_DATASET:-trajectory}"
 CONN="${AI_CONNECTION:-$P.us.trajectory_ai}"
 
+# The judge model, as a FULLY-QUALIFIED GLOBAL RESOURCE PATH.
+#
+# Gemini 3 is served from `global` only, and AI.GENERATE_BOOL resolves a bare
+# model name against the CONNECTION's region - so `gemini-3.7-flash` fails with
+# "not found or your project does not have access to it", which reads like an
+# IAM problem and is not one. The full projects/.../locations/global/... path
+# is honoured and reaches the model. `global/gemini-3.7-flash` does NOT work;
+# it is rejected as an unsupported endpoint. Pass the whole path or nothing.
+MODEL="${JUDGE_MODEL_NAME:-gemini-3.7-flash}"
+JUDGE_MODEL="projects/$P/locations/global/publishers/google/models/$MODEL"
+
 render() {
   sed -e "s|\${PROJECT_ID}|$P|g"       -e "s|\${DATASET}|$DS|g" \
       -e "s|\${REFUND_CALL_LIMIT}|200.0|g"  -e "s|\${REFUND_SESSION_CAP}|300.0|g" \
@@ -18,7 +29,7 @@ render() {
       -e "s|\${JUDGE_RISK_SAMPLE}|${JUDGE_RISK_SAMPLE:-200}|g" -e "s|\${RISK_MIN_TURNS}|${RISK_MIN_TURNS:-4}|g" \
       -e "s|\${EMBED_CONNECTION}|$CONN|g"  -e "s|\${AI_CONNECTION}|$CONN|g" \
       -e "s|\${EMBED_MODEL}|text-embedding-005|g" \
-      -e "s|\${JUDGE_MODEL}|gemini-2.5-flash|g" "$1"
+      -e "s|\${JUDGE_MODEL}|$JUDGE_MODEL|g" "$1"
 }
 
 run_one() {
