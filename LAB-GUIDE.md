@@ -172,9 +172,14 @@ with **no code change** — ADK emits OpenTelemetry natively and
 `telemetry.googleapis.com` is the OTLP endpoint. You get Sessions and the
 Agent Engine dashboard for free too.
 
-Then run A1, A3 and A5 against it and fill in
-[labs/gap_worksheet.md](labs/gap_worksheet.md) using **only** Cloud Trace, Cloud
-Logging and the Agent Engine dashboard.
+Then run A2, A3 and A5 against it and fill in
+[labs/gap_worksheet.md](labs/gap_worksheet.md) using **only** the native
+surface — the Agent Engine dashboard, Cloud Trace, Cloud Logging, **Application
+Monitoring** and **Observability Analytics** (SQL over logs and traces).
+
+Use all of it. The native tier is strong and has moved a long way; if you only
+open the dashboard you will "find" a gap that is really just a tool you did not
+try, and a customer will catch that.
 
 **Do not open BigQuery.** The deliverable of this lab is the worksheet, not the
 deployment — the point is what you *cannot* see.
@@ -200,49 +205,124 @@ tool names. Note two entries:
 
 Everything downstream keys off those two facts.
 
-### 2.1.2 Register the plugin — one line
+### 2.1.2 Path A — the plane Google already gives you
+
+Start with the telemetry you do **not** have to write. `google-adk` ships a
+BigQuery Agent Analytics plugin; registering it is the whole integration.
+
+```python
+from google.adk.plugins.bigquery_agent_analytics_plugin import (
+    BigQueryAgentAnalyticsPlugin, BigQueryLoggerConfig)
+
+analytics = BigQueryAgentAnalyticsPlugin(
+    project_id=PROJECT, dataset_id="trajectory",
+    config=BigQueryLoggerConfig(create_views=True, enable_otel_correlation=True))
+```
+
+Run the agent once, then look at what appeared in the dataset without you
+designing a schema:
+
+```bash
+bq ls trajectory | head -30
+```
+
+One `agent_events` table and **23 flat views** — `v_llm_request`,
+`v_tool_completed`, `v_agent_transfer`, `v_hitl_confirmation_request` and the
+rest — with the identity headers already unnested. It streams through the
+BigQuery Storage Write API, batched off the request path.
+
+What that buys you, measured on this agent, not quoted from a datasheet:
+
+| You get | Where | Why you care |
+|---|---|---|
+| `trace_id` | every event, **100%** populated | The join to Cloud Trace. §2.1.7 |
+| `usage.prompt` / `.completion` / `.total` | `LLM_RESPONSE` | Cost per session, free |
+| `latency_ms.time_to_first_token_ms` | `LLM_RESPONSE` | Latency without a stopwatch |
+| `tool_origin` | tool events | `LOCAL` / `MCP` / `SUB_AGENT` / `A2A` — is this agent calling a tool, or another agent? |
+| 28 event types | `agent_events` | Including agent transfer and human-in-the-loop |
+
+> ⚠️ **`enable_otel_correlation` defaults to `False`.** Leave it off and
+> `trace_id` is empty, the plane never joins to Cloud Trace, and you get two
+> unrelated piles of rows. There is no error and nothing looks broken.
+
+> ⚠️ **`flush()` is a coroutine.** `analytics.flush()` without `await` drops the
+> whole batch at process exit, silently. A short script exits before the batch
+> writer drains.
+
+### 2.1.3 Now find what Path A cannot see
+
+This is the most important five minutes of the day. Ask the telemetry you just
+got for free one question:
+
+> *When the model decided to call `send_email`, was there attacker-controlled
+> content in its context window?*
+
+Go looking. `v_llm_request` has the request. `v_tool_completed` has the tool
+result. Nothing anywhere joins **what came back from a tool** to **the next
+model call that saw it**. The native plane records that the agent read the
+knowledge base and, later, that it sent an email. It has no opinion about
+whether the first caused the second.
+
+That is not an oversight in the plugin. Causality inside the context window is
+a *security* question, and general-purpose observability has no reason to ask
+it. Which is the entire thesis of this workshop:
+
+> **Operational telemetry tells you what the agent did. It cannot tell you what
+> influenced it.**
+
+Everything in Path B exists to answer that one question, and it is one field.
+
+### 2.1.4 Path B — the security 20%, one line
 
 ```python
 from agent_trajectory import TrajectoryPlugin
-runner = Runner(agent=root_agent, plugins=[TrajectoryPlugin.from_env()], ...)
+app = App(name="shopflow", root_agent=root_agent,
+          plugins=[analytics, TrajectoryPlugin.from_env()])
 ```
 
-That is the entire integration. It ships as a package, not a snippet, because a
-copy-paste pattern creates FDE work at every customer forever.
+It ships as a package, not a snippet, because a copy-paste pattern creates FDE
+work at every customer forever.
 
-Run it locally:
+**Order is load-bearing.** ADK stops at the first plugin whose `before_tool`
+returns a value, and `TrajectoryPlugin` returns one when enforcement blocks a
+call (Lab 2.6). Analytics must come *first* or a blocked attempt is never
+recorded — and a tool that never appears is indistinguishable from a tool that
+was stopped.
+
+Run it locally and read the field the native plane does not have:
 
 ```bash
 export TRAJECTORY_SINK=jsonl TRAJECTORY_OUT_DIR=./telemetry_out
 python tests/test_capture.py
-```
-
-### 2.1.3 Read what was captured
-
-```bash
-jq -r '.tool_name + " " + .status' telemetry_out/trajectory_tool_calls.jsonl
 jq -r '"ctx=\(.context_tool_call_ids) untrusted=\(.context_has_untrusted)"' \
    telemetry_out/trajectory_llm_calls.jsonl
 ```
 
-**Stop on `context_tool_call_ids`.** Captured in `before_model`, it records which
-prior tool results were in the model's context window. It is the *only* reason
-the `FLOWED_INTO` taint edge is derivable in Lab 2.3. Skip that callback and the
-graph degrades from a security tool to a picture.
+**Stop on `context_tool_call_ids`.** Captured in `before_model`, it records
+which prior tool results were in the model's context window when it made this
+call. It is the *only* reason the `FLOWED_INTO` taint edge is derivable in Lab
+2.3. Skip that callback and the graph degrades from a security tool to a
+picture.
 
 Note also what is **not** there: raw chain-of-thought. `reasoning_summary` is
 capped and hashed. Raw CoT is high-volume and routinely contains the PII the
 agent just read — shipping it to a security table creates a compliance problem
 inside the tool meant to solve one.
 
-### 2.1.4 The four required signals
+### 2.1.5 The four required signals — who provides what
 
-| Signal | Captured by | Field |
-|---|---|---|
-| Model chain-of-thought | `after_model` | `reasoning_summary` + `reasoning_hash` |
-| Tool call decision | `before_tool` | `args_redacted`, `justification`, `llm_call_id` |
-| Tool call outcome | `after_tool` | `status`, `error_class`, `data_assets_read` |
-| Multi-turn outcome | `close_session` | `outcome` |
+| Signal | Plane | Captured by | Field |
+|---|---|---|---|
+| Model chain-of-thought | **B** | `after_model` | `reasoning_summary` + `reasoning_hash` |
+| Tool call decision | **B** | `before_tool` | `args_redacted`, `justification`, `llm_call_id` |
+| Tool call outcome | A + B | `after_tool` | `status`, `error_class`, `data_assets_read` |
+| Multi-turn outcome | **B** | `close_session` | `outcome` |
+| *Context provenance* | **B only** | `before_model` | `context_tool_call_ids` — §2.1.3 |
+| Tokens, latency, origin | **A only** | native | do not re-instrument these |
+
+Path A covers the volume; Path B covers the questions a security team asks.
+The last two rows are the ones to remember: exactly one field is irreplaceable,
+and three are free.
 
 #### ⚠️ Chain-of-thought only exists if you ask for it
 
@@ -285,7 +365,7 @@ SAID   : I can help with that. What is your email address?
 
 That is the difference between knowing *what* the agent did and *why*.
 
-### 2.1.5 Turn on native request-response logging
+### 2.1.6 The third plane — verbatim model logging
 
 GEAP logging is a **separate tier** from the plugin, and it is worth being clear
 about which question each answers. It writes the full request and response
@@ -331,7 +411,58 @@ Hold on to that. It is what makes A6 readable in Lab 2.5.
 > region** — every call from anything in that project gets logged. Use
 > `SAMPLING=0.1` outside a workshop, and `--disable` when you are done.
 
-### 2.1.6 Deploy the pipeline (Terraform)
+### 2.1.7 Join the three planes
+
+You now have three sources describing the same conversation, and they are only
+useful together.
+
+| Plane | Source | Grain | Joins on |
+|---|---|---|---|
+| **Harness** | ADK BQ Analytics (Path A) | every agent event | `session_id`, `invocation_id`, `trace_id` |
+| **Platform** | Cloud Trace, OTel GenAI semconv | spans | `trace_id` |
+| **Model** | GEAP request/response logging | one row per inference | — |
+| *Security* | TrajectoryPlugin (Path B) | our four records | `session_id`, `invocation_id` |
+
+Cloud Trace is queryable *in BigQuery* through a **linked dataset**, so the join
+happens in SQL rather than by eye across two consoles:
+
+```bash
+gcloud observability buckets datasets links create ...   # needs gcloud 563.0.0+
+```
+
+> ⚠️ **Two traps, both measured on ADK 2.6.3, both silent.**
+>
+> **`function_call_id` is NULL on the native plane.** `v_tool_completed` exposes
+> the column, so a join written against it parses, runs, and returns zero rows
+> for reasons that look like a data problem. `attributes.adk` carries only
+> `app_name` and `schema_version` — confirmed on a scripted model *and* a real
+> `gemini-3.7-flash` run. Our `tool_call_id` has no native counterpart. Join
+> per-tool-call on `(session_id, invocation_id, tool_name)` plus ordering, and
+> re-check this whenever you upgrade ADK.
+>
+> **GEAP logging has no session or trace id at all.** It cannot be id-joined to
+> anything — but every call carries the whole conversation in
+> `full_request.contents`, so one row *is* the multi-turn exchange. That is what
+> makes A6 readable in Lab 2.2, and it is why the plane earns its place despite
+> not joining.
+
+**Exercise.** Write the query that puts cost next to behaviour — tokens from
+Plane A, sensitivity from Plane B, one row per session:
+
+```sql
+SELECT s.session_id,
+       SUM(CAST(JSON_VALUE(e.content,'$.usage.total') AS INT64)) AS tokens,
+       COUNTIF(t.sensitivity IN ('pii','financial'))             AS sensitive_calls
+FROM `PROJECT.trajectory.agent_events` e
+JOIN `PROJECT.trajectory.trajectory_sessions` s USING (session_id)
+LEFT JOIN `PROJECT.trajectory.trajectory_tool_calls` t USING (session_id)
+WHERE e.event_type = 'LLM_RESPONSE'
+GROUP BY 1
+```
+
+Neither plane can answer that alone. That is the whole point of this lab.
+
+### 2.1.8 Deploy the pipeline (Terraform)
 
 ```bash
 cd terraform
