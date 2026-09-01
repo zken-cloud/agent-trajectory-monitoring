@@ -1,0 +1,67 @@
+[
+  {
+    "name": "invocation_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "session_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "user_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "turn_index",
+    "type": "INT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "started_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "ended_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "user_message",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "user_message_hash",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "final_response",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "status",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "schema_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

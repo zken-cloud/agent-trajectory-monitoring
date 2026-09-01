@@ -1,0 +1,1082 @@
+[
+ {
+  "customer_id": "CUST-1000",
+  "name": "Kit Lindqvist",
+  "email": "kit.lindqvist0@example.com",
+  "phone": "+44 7463 104753",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "7899"
+ },
+ {
+  "customer_id": "CUST-1001",
+  "name": "Ilya Lindqvist",
+  "email": "ilya.lindqvist1@example.com",
+  "phone": "+44 7412 793319",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "5732"
+ },
+ {
+  "customer_id": "CUST-1002",
+  "name": "Pia Okafor",
+  "email": "pia.okafor2@example.com",
+  "phone": "+44 7892 885532",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "5399"
+ },
+ {
+  "customer_id": "CUST-1003",
+  "name": "Mo Silva",
+  "email": "mo.silva3@example.com",
+  "phone": "+44 7685 992301",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "7989"
+ },
+ {
+  "customer_id": "CUST-1004",
+  "name": "Jo Costa",
+  "email": "jo.costa4@example.com",
+  "phone": "+44 7848 597414",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "8064"
+ },
+ {
+  "customer_id": "CUST-1005",
+  "name": "Ilya Bauer",
+  "email": "ilya.bauer5@example.com",
+  "phone": "+44 7265 291835",
+  "city": "Lyon",
+  "tier": "plus",
+  "payment_last4": "2585"
+ },
+ {
+  "customer_id": "CUST-1006",
+  "name": "Vik Vega",
+  "email": "vik.vega6@example.com",
+  "phone": "+44 7762 244922",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "5672"
+ },
+ {
+  "customer_id": "CUST-1007",
+  "name": "Oz Rossi",
+  "email": "oz.rossi7@example.com",
+  "phone": "+44 7529 459752",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "9020"
+ },
+ {
+  "customer_id": "CUST-1008",
+  "name": "Oz Tanaka",
+  "email": "oz.tanaka8@example.com",
+  "phone": "+44 7540 584515",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "5923"
+ },
+ {
+  "customer_id": "CUST-1009",
+  "name": "Lena Haddad",
+  "email": "lena.haddad9@example.com",
+  "phone": "+44 7569 594360",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "5777"
+ },
+ {
+  "customer_id": "CUST-1010",
+  "name": "Fay Haddad",
+  "email": "fay.haddad10@example.com",
+  "phone": "+44 7189 916666",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "8257"
+ },
+ {
+  "customer_id": "CUST-1011",
+  "name": "Mo Vega",
+  "email": "mo.vega11@example.com",
+  "phone": "+44 7371 348681",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "5952"
+ },
+ {
+  "customer_id": "CUST-1012",
+  "name": "Bo Nowak",
+  "email": "bo.nowak12@example.com",
+  "phone": "+44 7967 107587",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "6950"
+ },
+ {
+  "customer_id": "CUST-1013",
+  "name": "Pia Costa",
+  "email": "pia.costa13@example.com",
+  "phone": "+44 7516 482087",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "3389"
+ },
+ {
+  "customer_id": "CUST-1014",
+  "name": "Yuki Rossi",
+  "email": "yuki.rossi14@example.com",
+  "phone": "+44 7954 895764",
+  "city": "Lyon",
+  "tier": "plus",
+  "payment_last4": "3503"
+ },
+ {
+  "customer_id": "CUST-1015",
+  "name": "Sam Haddad",
+  "email": "sam.haddad15@example.com",
+  "phone": "+44 7314 981228",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "4438"
+ },
+ {
+  "customer_id": "CUST-1016",
+  "name": "Quin Dubois",
+  "email": "quin.dubois16@example.com",
+  "phone": "+44 7395 730559",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "1458"
+ },
+ {
+  "customer_id": "CUST-1017",
+  "name": "Pia Okafor",
+  "email": "pia.okafor17@example.com",
+  "phone": "+44 7726 321197",
+  "city": "Lyon",
+  "tier": "plus",
+  "payment_last4": "4920"
+ },
+ {
+  "customer_id": "CUST-1018",
+  "name": "Quin Haddad",
+  "email": "quin.haddad18@example.com",
+  "phone": "+44 7128 541492",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "8688"
+ },
+ {
+  "customer_id": "CUST-1019",
+  "name": "Vik Ivanov",
+  "email": "vik.ivanov19@example.com",
+  "phone": "+44 7383 868556",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "6312"
+ },
+ {
+  "customer_id": "CUST-1020",
+  "name": "Yuki Costa",
+  "email": "yuki.costa20@example.com",
+  "phone": "+44 7864 788200",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "3713"
+ },
+ {
+  "customer_id": "CUST-1021",
+  "name": "Jo Nowak",
+  "email": "jo.nowak21@example.com",
+  "phone": "+44 7967 693718",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "3880"
+ },
+ {
+  "customer_id": "CUST-1022",
+  "name": "Uma Silva",
+  "email": "uma.silva22@example.com",
+  "phone": "+44 7425 808186",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "7518"
+ },
+ {
+  "customer_id": "CUST-1023",
+  "name": "Sam Farrell",
+  "email": "sam.farrell23@example.com",
+  "phone": "+44 7136 921787",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "7434"
+ },
+ {
+  "customer_id": "CUST-1024",
+  "name": "Sam Vega",
+  "email": "sam.vega24@example.com",
+  "phone": "+44 7349 698669",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "7938"
+ },
+ {
+  "customer_id": "CUST-1025",
+  "name": "Bo Dubois",
+  "email": "bo.dubois25@example.com",
+  "phone": "+44 7398 823890",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "6613"
+ },
+ {
+  "customer_id": "CUST-1026",
+  "name": "Pia Novak",
+  "email": "pia.novak26@example.com",
+  "phone": "+44 7969 415602",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "6913"
+ },
+ {
+  "customer_id": "CUST-1027",
+  "name": "Hana Mensah",
+  "email": "hana.mensah27@example.com",
+  "phone": "+44 7113 864833",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "3342"
+ },
+ {
+  "customer_id": "CUST-1028",
+  "name": "Kit Costa",
+  "email": "kit.costa28@example.com",
+  "phone": "+44 7995 346897",
+  "city": "Nairobi",
+  "tier": "plus",
+  "payment_last4": "9815"
+ },
+ {
+  "customer_id": "CUST-1029",
+  "name": "Fay Vega",
+  "email": "fay.vega29@example.com",
+  "phone": "+44 7702 182741",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "6937"
+ },
+ {
+  "customer_id": "CUST-1030",
+  "name": "Dara Novak",
+  "email": "dara.novak30@example.com",
+  "phone": "+44 7579 575862",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "7305"
+ },
+ {
+  "customer_id": "CUST-1031",
+  "name": "Ilya Lindqvist",
+  "email": "ilya.lindqvist31@example.com",
+  "phone": "+44 7519 789444",
+  "city": "Nairobi",
+  "tier": "plus",
+  "payment_last4": "9849"
+ },
+ {
+  "customer_id": "CUST-1032",
+  "name": "Kit Nowak",
+  "email": "kit.nowak32@example.com",
+  "phone": "+44 7229 544729",
+  "city": "Bristol",
+  "tier": "plus",
+  "payment_last4": "9586"
+ },
+ {
+  "customer_id": "CUST-1033",
+  "name": "Ana Silva",
+  "email": "ana.silva33@example.com",
+  "phone": "+44 7153 176242",
+  "city": "Osaka",
+  "tier": "standard",
+  "payment_last4": "6759"
+ },
+ {
+  "customer_id": "CUST-1034",
+  "name": "Cai Silva",
+  "email": "cai.silva34@example.com",
+  "phone": "+44 7815 402199",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "6900"
+ },
+ {
+  "customer_id": "CUST-1035",
+  "name": "Jo Okafor",
+  "email": "jo.okafor35@example.com",
+  "phone": "+44 7700 551656",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "4970"
+ },
+ {
+  "customer_id": "CUST-1036",
+  "name": "Fay Ivanov",
+  "email": "fay.ivanov36@example.com",
+  "phone": "+44 7959 655362",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "1836"
+ },
+ {
+  "customer_id": "CUST-1037",
+  "name": "Ilya Silva",
+  "email": "ilya.silva37@example.com",
+  "phone": "+44 7751 695930",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "6913"
+ },
+ {
+  "customer_id": "CUST-1038",
+  "name": "Oz Dubois",
+  "email": "oz.dubois38@example.com",
+  "phone": "+44 7558 928978",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "2967"
+ },
+ {
+  "customer_id": "CUST-1039",
+  "name": "Vik Bauer",
+  "email": "vik.bauer39@example.com",
+  "phone": "+44 7627 601639",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "7928"
+ },
+ {
+  "customer_id": "CUST-1040",
+  "name": "Efe Moreau",
+  "email": "efe.moreau40@example.com",
+  "phone": "+44 7962 765574",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "7662"
+ },
+ {
+  "customer_id": "CUST-1041",
+  "name": "Vik Vega",
+  "email": "vik.vega41@example.com",
+  "phone": "+44 7868 324933",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "9401"
+ },
+ {
+  "customer_id": "CUST-1042",
+  "name": "Fay Dubois",
+  "email": "fay.dubois42@example.com",
+  "phone": "+44 7122 405013",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "9320"
+ },
+ {
+  "customer_id": "CUST-1043",
+  "name": "Efe Moreau",
+  "email": "efe.moreau43@example.com",
+  "phone": "+44 7180 757613",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "2958"
+ },
+ {
+  "customer_id": "CUST-1044",
+  "name": "Cai Rossi",
+  "email": "cai.rossi44@example.com",
+  "phone": "+44 7834 671811",
+  "city": "Nairobi",
+  "tier": "plus",
+  "payment_last4": "4518"
+ },
+ {
+  "customer_id": "CUST-1045",
+  "name": "Wren Novak",
+  "email": "wren.novak45@example.com",
+  "phone": "+44 7262 393063",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "1875"
+ },
+ {
+  "customer_id": "CUST-1046",
+  "name": "Tam Dubois",
+  "email": "tam.dubois46@example.com",
+  "phone": "+44 7999 369558",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "9445"
+ },
+ {
+  "customer_id": "CUST-1047",
+  "name": "Kit Tanaka",
+  "email": "kit.tanaka47@example.com",
+  "phone": "+44 7676 481184",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "9173"
+ },
+ {
+  "customer_id": "CUST-1048",
+  "name": "Yuki Silva",
+  "email": "yuki.silva48@example.com",
+  "phone": "+44 7769 318775",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "1322"
+ },
+ {
+  "customer_id": "CUST-1049",
+  "name": "Ilya Moreau",
+  "email": "ilya.moreau49@example.com",
+  "phone": "+44 7556 220278",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "7840"
+ },
+ {
+  "customer_id": "CUST-1050",
+  "name": "Kit Tanaka",
+  "email": "kit.tanaka50@example.com",
+  "phone": "+44 7338 757310",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "6518"
+ },
+ {
+  "customer_id": "CUST-1051",
+  "name": "Cai Lindqvist",
+  "email": "cai.lindqvist51@example.com",
+  "phone": "+44 7561 743522",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "5404"
+ },
+ {
+  "customer_id": "CUST-1052",
+  "name": "Quin Tanaka",
+  "email": "quin.tanaka52@example.com",
+  "phone": "+44 7474 394266",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "6449"
+ },
+ {
+  "customer_id": "CUST-1053",
+  "name": "Lena Silva",
+  "email": "lena.silva53@example.com",
+  "phone": "+44 7814 211365",
+  "city": "Osaka",
+  "tier": "standard",
+  "payment_last4": "7135"
+ },
+ {
+  "customer_id": "CUST-1054",
+  "name": "Tam Novak",
+  "email": "tam.novak54@example.com",
+  "phone": "+44 7488 970315",
+  "city": "Nairobi",
+  "tier": "plus",
+  "payment_last4": "2425"
+ },
+ {
+  "customer_id": "CUST-1055",
+  "name": "Hana Haddad",
+  "email": "hana.haddad55@example.com",
+  "phone": "+44 7996 248250",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "1547"
+ },
+ {
+  "customer_id": "CUST-1056",
+  "name": "Nia Bauer",
+  "email": "nia.bauer56@example.com",
+  "phone": "+44 7841 700626",
+  "city": "Bristol",
+  "tier": "plus",
+  "payment_last4": "8065"
+ },
+ {
+  "customer_id": "CUST-1057",
+  "name": "Cai Moreau",
+  "email": "cai.moreau57@example.com",
+  "phone": "+44 7833 546794",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "2404"
+ },
+ {
+  "customer_id": "CUST-1058",
+  "name": "Rai Novak",
+  "email": "rai.novak58@example.com",
+  "phone": "+44 7208 221449",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "2454"
+ },
+ {
+  "customer_id": "CUST-1059",
+  "name": "Sam Novak",
+  "email": "sam.novak59@example.com",
+  "phone": "+44 7312 572503",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "6236"
+ },
+ {
+  "customer_id": "CUST-1060",
+  "name": "Fay Rossi",
+  "email": "fay.rossi60@example.com",
+  "phone": "+44 7165 957790",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "5064"
+ },
+ {
+  "customer_id": "CUST-1061",
+  "name": "Lena Bauer",
+  "email": "lena.bauer61@example.com",
+  "phone": "+44 7707 756744",
+  "city": "Nairobi",
+  "tier": "plus",
+  "payment_last4": "5908"
+ },
+ {
+  "customer_id": "CUST-1062",
+  "name": "Rai Rossi",
+  "email": "rai.rossi62@example.com",
+  "phone": "+44 7184 293803",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "2581"
+ },
+ {
+  "customer_id": "CUST-1063",
+  "name": "Vik Haddad",
+  "email": "vik.haddad63@example.com",
+  "phone": "+44 7261 277458",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "5999"
+ },
+ {
+  "customer_id": "CUST-1064",
+  "name": "Yuki Farrell",
+  "email": "yuki.farrell64@example.com",
+  "phone": "+44 7887 352553",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "3210"
+ },
+ {
+  "customer_id": "CUST-1065",
+  "name": "Pia Mensah",
+  "email": "pia.mensah65@example.com",
+  "phone": "+44 7225 194557",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "5394"
+ },
+ {
+  "customer_id": "CUST-1066",
+  "name": "Dara Costa",
+  "email": "dara.costa66@example.com",
+  "phone": "+44 7486 536240",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "4721"
+ },
+ {
+  "customer_id": "CUST-1067",
+  "name": "Pia Vega",
+  "email": "pia.vega67@example.com",
+  "phone": "+44 7520 477932",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "4856"
+ },
+ {
+  "customer_id": "CUST-1068",
+  "name": "Ilya Lindqvist",
+  "email": "ilya.lindqvist68@example.com",
+  "phone": "+44 7865 227549",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "9110"
+ },
+ {
+  "customer_id": "CUST-1069",
+  "name": "Rai Bauer",
+  "email": "rai.bauer69@example.com",
+  "phone": "+44 7160 678017",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "8239"
+ },
+ {
+  "customer_id": "CUST-1070",
+  "name": "Fay Lindqvist",
+  "email": "fay.lindqvist70@example.com",
+  "phone": "+44 7114 626401",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "7555"
+ },
+ {
+  "customer_id": "CUST-1071",
+  "name": "Lena Rossi",
+  "email": "lena.rossi71@example.com",
+  "phone": "+44 7569 926140",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "8828"
+ },
+ {
+  "customer_id": "CUST-1072",
+  "name": "Oz Bauer",
+  "email": "oz.bauer72@example.com",
+  "phone": "+44 7384 492096",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "6243"
+ },
+ {
+  "customer_id": "CUST-1073",
+  "name": "Quin Novak",
+  "email": "quin.novak73@example.com",
+  "phone": "+44 7485 320602",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "5416"
+ },
+ {
+  "customer_id": "CUST-1074",
+  "name": "Fay Farrell",
+  "email": "fay.farrell74@example.com",
+  "phone": "+44 7505 377698",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "1344"
+ },
+ {
+  "customer_id": "CUST-1075",
+  "name": "Quin Okafor",
+  "email": "quin.okafor75@example.com",
+  "phone": "+44 7183 628438",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "2852"
+ },
+ {
+  "customer_id": "CUST-1076",
+  "name": "Quin Lindqvist",
+  "email": "quin.lindqvist76@example.com",
+  "phone": "+44 7709 952507",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "5628"
+ },
+ {
+  "customer_id": "CUST-1077",
+  "name": "Quin Mensah",
+  "email": "quin.mensah77@example.com",
+  "phone": "+44 7729 542089",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "2820"
+ },
+ {
+  "customer_id": "CUST-1078",
+  "name": "Rai Silva",
+  "email": "rai.silva78@example.com",
+  "phone": "+44 7833 693550",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "2070"
+ },
+ {
+  "customer_id": "CUST-1079",
+  "name": "Jo Dubois",
+  "email": "jo.dubois79@example.com",
+  "phone": "+44 7264 588462",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "1482"
+ },
+ {
+  "customer_id": "CUST-1080",
+  "name": "Ilya Silva",
+  "email": "ilya.silva80@example.com",
+  "phone": "+44 7184 163013",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "3284"
+ },
+ {
+  "customer_id": "CUST-1081",
+  "name": "Mo Bauer",
+  "email": "mo.bauer81@example.com",
+  "phone": "+44 7364 185116",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "7242"
+ },
+ {
+  "customer_id": "CUST-1082",
+  "name": "Fay Ivanov",
+  "email": "fay.ivanov82@example.com",
+  "phone": "+44 7695 349944",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "8831"
+ },
+ {
+  "customer_id": "CUST-1083",
+  "name": "Yuki Haddad",
+  "email": "yuki.haddad83@example.com",
+  "phone": "+44 7861 382157",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "3565"
+ },
+ {
+  "customer_id": "CUST-1084",
+  "name": "Kit Vega",
+  "email": "kit.vega84@example.com",
+  "phone": "+44 7134 272178",
+  "city": "Lyon",
+  "tier": "plus",
+  "payment_last4": "9197"
+ },
+ {
+  "customer_id": "CUST-1085",
+  "name": "Sam Novak",
+  "email": "sam.novak85@example.com",
+  "phone": "+44 7813 780613",
+  "city": "Osaka",
+  "tier": "standard",
+  "payment_last4": "9576"
+ },
+ {
+  "customer_id": "CUST-1086",
+  "name": "Nia Rossi",
+  "email": "nia.rossi86@example.com",
+  "phone": "+44 7764 564307",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "6424"
+ },
+ {
+  "customer_id": "CUST-1087",
+  "name": "Ilya Tanaka",
+  "email": "ilya.tanaka87@example.com",
+  "phone": "+44 7696 189983",
+  "city": "Osaka",
+  "tier": "standard",
+  "payment_last4": "1457"
+ },
+ {
+  "customer_id": "CUST-1088",
+  "name": "Tam Bauer",
+  "email": "tam.bauer88@example.com",
+  "phone": "+44 7815 281423",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "6996"
+ },
+ {
+  "customer_id": "CUST-1089",
+  "name": "Tam Mensah",
+  "email": "tam.mensah89@example.com",
+  "phone": "+44 7972 402499",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "8801"
+ },
+ {
+  "customer_id": "CUST-1090",
+  "name": "Efe Dubois",
+  "email": "efe.dubois90@example.com",
+  "phone": "+44 7388 989867",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "8873"
+ },
+ {
+  "customer_id": "CUST-1091",
+  "name": "Cai Tanaka",
+  "email": "cai.tanaka91@example.com",
+  "phone": "+44 7823 945177",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "2391"
+ },
+ {
+  "customer_id": "CUST-1092",
+  "name": "Sam Novak",
+  "email": "sam.novak92@example.com",
+  "phone": "+44 7956 537447",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "2092"
+ },
+ {
+  "customer_id": "CUST-1093",
+  "name": "Kit Ivanov",
+  "email": "kit.ivanov93@example.com",
+  "phone": "+44 7580 310087",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "8190"
+ },
+ {
+  "customer_id": "CUST-1094",
+  "name": "Hana Haddad",
+  "email": "hana.haddad94@example.com",
+  "phone": "+44 7425 537300",
+  "city": "Lyon",
+  "tier": "plus",
+  "payment_last4": "4550"
+ },
+ {
+  "customer_id": "CUST-1095",
+  "name": "Cai Tanaka",
+  "email": "cai.tanaka95@example.com",
+  "phone": "+44 7248 300732",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "9964"
+ },
+ {
+  "customer_id": "CUST-1096",
+  "name": "Sam Ivanov",
+  "email": "sam.ivanov96@example.com",
+  "phone": "+44 7220 935700",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "7264"
+ },
+ {
+  "customer_id": "CUST-1097",
+  "name": "Jo Bauer",
+  "email": "jo.bauer97@example.com",
+  "phone": "+44 7963 775522",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "5422"
+ },
+ {
+  "customer_id": "CUST-1098",
+  "name": "Rai Moreau",
+  "email": "rai.moreau98@example.com",
+  "phone": "+44 7222 588740",
+  "city": "Osaka",
+  "tier": "standard",
+  "payment_last4": "8173"
+ },
+ {
+  "customer_id": "CUST-1099",
+  "name": "Ilya Tanaka",
+  "email": "ilya.tanaka99@example.com",
+  "phone": "+44 7134 219894",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "1181"
+ },
+ {
+  "customer_id": "CUST-1100",
+  "name": "Mo Haddad",
+  "email": "mo.haddad100@example.com",
+  "phone": "+44 7707 177083",
+  "city": "Krakow",
+  "tier": "plus",
+  "payment_last4": "2217"
+ },
+ {
+  "customer_id": "CUST-1101",
+  "name": "Oz Novak",
+  "email": "oz.novak101@example.com",
+  "phone": "+44 7307 472674",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "6367"
+ },
+ {
+  "customer_id": "CUST-1102",
+  "name": "Bo Rossi",
+  "email": "bo.rossi102@example.com",
+  "phone": "+44 7264 177843",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "8503"
+ },
+ {
+  "customer_id": "CUST-1103",
+  "name": "Mo Dubois",
+  "email": "mo.dubois103@example.com",
+  "phone": "+44 7817 566726",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "5047"
+ },
+ {
+  "customer_id": "CUST-1104",
+  "name": "Cai Lindqvist",
+  "email": "cai.lindqvist104@example.com",
+  "phone": "+44 7923 994785",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "5906"
+ },
+ {
+  "customer_id": "CUST-1105",
+  "name": "Gus Nowak",
+  "email": "gus.nowak105@example.com",
+  "phone": "+44 7334 622389",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "7857"
+ },
+ {
+  "customer_id": "CUST-1106",
+  "name": "Quin Dubois",
+  "email": "quin.dubois106@example.com",
+  "phone": "+44 7529 177968",
+  "city": "Lisbon",
+  "tier": "plus",
+  "payment_last4": "8888"
+ },
+ {
+  "customer_id": "CUST-1107",
+  "name": "Wren Ivanov",
+  "email": "wren.ivanov107@example.com",
+  "phone": "+44 7229 616484",
+  "city": "Lisbon",
+  "tier": "standard",
+  "payment_last4": "9361"
+ },
+ {
+  "customer_id": "CUST-1108",
+  "name": "Fay Vega",
+  "email": "fay.vega108@example.com",
+  "phone": "+44 7923 961688",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "9635"
+ },
+ {
+  "customer_id": "CUST-1109",
+  "name": "Efe Moreau",
+  "email": "efe.moreau109@example.com",
+  "phone": "+44 7324 271401",
+  "city": "Nairobi",
+  "tier": "standard",
+  "payment_last4": "4004"
+ },
+ {
+  "customer_id": "CUST-1110",
+  "name": "Cai Novak",
+  "email": "cai.novak110@example.com",
+  "phone": "+44 7310 331069",
+  "city": "Bristol",
+  "tier": "standard",
+  "payment_last4": "8352"
+ },
+ {
+  "customer_id": "CUST-1111",
+  "name": "Hana Novak",
+  "email": "hana.novak111@example.com",
+  "phone": "+44 7530 241870",
+  "city": "Bogota",
+  "tier": "standard",
+  "payment_last4": "9712"
+ },
+ {
+  "customer_id": "CUST-1112",
+  "name": "Jo Haddad",
+  "email": "jo.haddad112@example.com",
+  "phone": "+44 7128 964733",
+  "city": "Osaka",
+  "tier": "plus",
+  "payment_last4": "4853"
+ },
+ {
+  "customer_id": "CUST-1113",
+  "name": "Rai Farrell",
+  "email": "rai.farrell113@example.com",
+  "phone": "+44 7359 724371",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "3936"
+ },
+ {
+  "customer_id": "CUST-1114",
+  "name": "Bo Haddad",
+  "email": "bo.haddad114@example.com",
+  "phone": "+44 7231 993312",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "1262"
+ },
+ {
+  "customer_id": "CUST-1115",
+  "name": "Mo Silva",
+  "email": "mo.silva115@example.com",
+  "phone": "+44 7500 850223",
+  "city": "Toronto",
+  "tier": "plus",
+  "payment_last4": "1059"
+ },
+ {
+  "customer_id": "CUST-1116",
+  "name": "Wren Haddad",
+  "email": "wren.haddad116@example.com",
+  "phone": "+44 7981 812219",
+  "city": "Lyon",
+  "tier": "standard",
+  "payment_last4": "8184"
+ },
+ {
+  "customer_id": "CUST-1117",
+  "name": "Cai Nowak",
+  "email": "cai.nowak117@example.com",
+  "phone": "+44 7982 913590",
+  "city": "Bogota",
+  "tier": "plus",
+  "payment_last4": "5639"
+ },
+ {
+  "customer_id": "CUST-1118",
+  "name": "Quin Rossi",
+  "email": "quin.rossi118@example.com",
+  "phone": "+44 7746 490834",
+  "city": "Krakow",
+  "tier": "standard",
+  "payment_last4": "7473"
+ },
+ {
+  "customer_id": "CUST-1119",
+  "name": "Cai Dubois",
+  "email": "cai.dubois119@example.com",
+  "phone": "+44 7296 670390",
+  "city": "Toronto",
+  "tier": "standard",
+  "payment_last4": "6825"
+ }
+]

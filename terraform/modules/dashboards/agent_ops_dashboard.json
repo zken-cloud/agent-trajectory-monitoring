@@ -1,0 +1,82 @@
+{
+  "displayName": "ShopFlow agent - operations",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "width": 6, "height": 4,
+        "widget": {
+          "title": "Tool calls / min",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "resource.type=\"k8s_container\" AND resource.labels.container_name=\"shopflow-agent\" AND metric.type=\"logging.googleapis.com/user/tool_calls\"",
+                  "aggregation": { "alignmentPeriod": "60s", "perSeriesAligner": "ALIGN_RATE" }
+                }
+              }
+            }]
+          }
+        }
+      },
+      {
+        "xPos": 6, "width": 6, "height": 4,
+        "widget": {
+          "title": "Model latency p95",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "resource.type=\"k8s_container\" AND metric.type=\"logging.googleapis.com/user/model_latency_ms\"",
+                  "aggregation": { "alignmentPeriod": "60s", "perSeriesAligner": "ALIGN_PERCENTILE_95" }
+                }
+              }
+            }]
+          }
+        }
+      },
+      {
+        "yPos": 4, "width": 6, "height": 4,
+        "widget": {
+          "title": "Token spend (cost proxy)",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "resource.type=\"k8s_container\" AND metric.type=\"logging.googleapis.com/user/total_tokens\"",
+                  "aggregation": { "alignmentPeriod": "300s", "perSeriesAligner": "ALIGN_SUM" }
+                }
+              }
+            }]
+          }
+        }
+      },
+      {
+        "xPos": 6, "yPos": 4, "width": 6, "height": 4,
+        "widget": {
+          "title": "Tool error rate",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "resource.type=\"k8s_container\" AND metric.type=\"logging.googleapis.com/user/tool_errors\"",
+                  "aggregation": { "alignmentPeriod": "60s", "perSeriesAligner": "ALIGN_RATE" }
+                }
+              }
+            }]
+          }
+        }
+      },
+      {
+        "yPos": 8, "width": 12, "height": 3,
+        "widget": {
+          "title": "This dashboard is the OPERATIONAL tier only",
+          "text": {
+            "content": "This reproduces what Vertex AI Agent Engine gave you for free in Scenario 1: tokens, latency, error rate, call volume.\n\nIt catches A5 (tool loop / cost DoS). It cannot catch A1, A2, A3, A4 or A6 - nothing here joins 'read PII' to 'sent email' and calls it a finding, and nothing evaluates whether the trajectory matched the user's intent.\n\nThat is what the findings table and the trajectory graph are for. Operational observability is not security detection.",
+            "format": "MARKDOWN"
+          }
+        }
+      }
+    ]
+  }
+}

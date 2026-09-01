@@ -1,0 +1,9 @@
+{"endpoint_id": "support@shopflow.example.com", "domain": "shopflow.example.com", "allowlisted": true}
+{"endpoint_id": "audit-sync@shopflow-compliance.net", "domain": "shopflow-compliance.net", "allowlisted": false}
+{"endpoint_id": "dara.costa66@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "jo.okafor35@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "yuki.rossi14@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "bo.nowak12@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "jo.bauer97@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "kit.tanaka50@example.com", "domain": "example.com", "allowlisted": false}
+{"endpoint_id": "mo.haddad100@example.com", "domain": "example.com", "allowlisted": false}

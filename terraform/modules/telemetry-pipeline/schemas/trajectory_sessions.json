@@ -1,0 +1,62 @@
+[
+  {
+    "name": "session_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "app_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "user_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "started_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "ended_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "turn_count",
+    "type": "INT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "outcome",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "baseline_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "goal_satisfied",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "schema_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

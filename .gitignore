@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.egg-info/
+corpus/
+attack_out/
+shadow_out/
+blocked_out/
+telemetry_out/
+.val_*.json
+
+# Generated output - contains a snapshot of whoever ran it
+dashboard*.html
+
+# Terraform: provider binaries (125MB, over GitHub's file limit) and state.
+# State points at the dev project - an attendee must never inherit it.
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+
+# Stale mermaid bundle from an earlier render_architecture.py; the script now
+# fetches site/.mermaid.min.js on demand.
+site/.m.js
+site/.m.html
+site/.mermaid.min.js

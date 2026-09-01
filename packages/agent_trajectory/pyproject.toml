@@ -1,0 +1,17 @@
+[project]
+name = "agent-trajectory"
+version = "0.1.0"
+description = "Security telemetry + inline enforcement for ADK agents. Ships the trajectory schema contract; ADK is the reference adapter."
+requires-python = ">=3.10"
+dependencies = ["google-adk>=2.0", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+bigquery = ["google-cloud-bigquery>=3.20"]
+pubsub = ["google-cloud-pubsub>=2.20"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agent_trajectory*"]

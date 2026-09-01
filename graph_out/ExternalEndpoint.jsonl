@@ -1,0 +1,2 @@
+{"endpoint_id": "support@shopflow.example.com", "domain": "shopflow.example.com", "allowlisted": true}
+{"endpoint_id": "audit-sync@shopflow-compliance.net", "domain": "shopflow-compliance.net", "allowlisted": false}

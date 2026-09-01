@@ -1,0 +1,6 @@
+{"tool_name": "lookup_customer", "sensitivity": "pii", "is_egress": false, "is_mutating": false, "trust_label": "TRUSTED", "off_manifest": false}
+{"tool_name": "search_kb", "sensitivity": "none", "is_egress": false, "is_mutating": false, "trust_label": "UNTRUSTED", "off_manifest": false}
+{"tool_name": "issue_refund", "sensitivity": "financial", "is_egress": false, "is_mutating": true, "trust_label": "TRUSTED", "off_manifest": false}
+{"tool_name": "send_email", "sensitivity": "low", "is_egress": true, "is_mutating": true, "trust_label": "TRUSTED", "off_manifest": false}
+{"tool_name": "run_diagnostic", "sensitivity": "low", "is_egress": false, "is_mutating": false, "trust_label": "UNTRUSTED", "off_manifest": false}
+{"tool_name": "escalate_to_human", "sensitivity": "none", "is_egress": false, "is_mutating": false, "trust_label": "TRUSTED", "off_manifest": false}

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "finding_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "rule_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "layer",
+    "type": "INT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "session_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "invocation_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "tool_call_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "severity",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "score",
+    "type": "FLOAT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "detail",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "detected_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  }
+]

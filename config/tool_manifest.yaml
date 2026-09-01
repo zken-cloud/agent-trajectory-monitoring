@@ -1,0 +1,95 @@
+# ShopFlow tool manifest — the security seam.
+#
+# THIS IS THE ONE FILE A CUSTOMER EDITS.
+# Detections bind to the PROPERTIES below, never to tool names, so adding a
+# seventh tool means adding a stanza here — not rewriting D1-D5.
+#
+# Property semantics:
+#   sensitivity      none | low | pii | financial   (what the tool touches)
+#   is_egress        true if the tool can move data OUT of the trust boundary
+#   is_mutating      true if the call has a side effect that cannot be undone
+#   trust_label      trust of data this tool RETURNS: TRUSTED | UNTRUSTED
+#                    UNTRUSTED marks indirect-prompt-injection ingress points
+#   required_scopes  scopes the caller must hold (identity detections)
+#   limits           per-tool policy thresholds consumed by Layer 1 rules
+
+agent:
+  name: shopflow_support
+  version: "1.0.0"          # bump this and baselines re-scope (see WORKSHOP-PLAN 6.1)
+
+egress_allowlist_domains:
+  - shopflow.example.com
+  - shopflow-support.example.com
+
+tools:
+  lookup_customer:
+    description: Look up a customer record by email.
+    sensitivity: pii
+    is_egress: false
+    is_mutating: false
+    trust_label: TRUSTED
+    required_scopes: [customer.read]
+
+  search_kb:
+    description: Search the public knowledge base.
+    sensitivity: none
+    is_egress: false
+    is_mutating: false
+    trust_label: UNTRUSTED     # <-- attacker-controllable content lands here (A2)
+    required_scopes: []
+
+  issue_refund:
+    description: Issue a refund against an order.
+    sensitivity: financial
+    is_egress: false
+    is_mutating: true
+    trust_label: TRUSTED
+    required_scopes: [orders.write, payments.write]
+    limits:
+      max_amount_per_call: 200.00
+      max_amount_per_session: 300.00    # D4 aggregation rule reads this
+
+  send_email:
+    description: Send an email to a customer.
+    sensitivity: low
+    is_egress: true            # <-- the exfiltration sink (A3)
+    is_mutating: true
+    trust_label: TRUSTED
+    required_scopes: [comms.send]
+    # A domain allowlist alone says "we may only email ourselves", which is not
+    # what a support agent does: 185 of 444 emails in the 3.6-flash corpus went
+    # to a customer at their own address and were all flagged. An address the
+    # customer used to identify their account THIS SESSION (via lookup_customer)
+    # is treated as theirs. A3 still trips the rule - it looks up the victim and
+    # mails the attacker - because the recipient never matches what was verified.
+    allow_recipient_verified_by: lookup_customer.email
+
+  run_diagnostic:
+    description: Run a read-only diagnostic against an internal host.
+    sensitivity: low
+    is_egress: false
+    is_mutating: false
+    trust_label: UNTRUSTED     # host output is not ours either
+    required_scopes: [infra.read]
+
+  escalate_to_human:
+    description: Hand the conversation to a human agent.
+    sensitivity: none
+    is_egress: false
+    is_mutating: false
+    trust_label: TRUSTED
+    required_scopes: []
+
+# Layer 1 detections that may be promoted to inline enforcement (Lab 2.6).
+# Only deterministic rules are eligible - see WORKSHOP-PLAN 4.6.
+enforcement:
+  mode: shadow               # shadow | approve | block  (start in shadow, always)
+  rules:
+    - id: D1_refund_over_limit
+      action: block
+    - id: D1_egress_off_allowlist
+      action: block
+    - id: D2_pii_read_then_egress
+      action: approve        # divert to escalate_to_human rather than hard-fail
+    - id: D3_tool_loop
+      action: block

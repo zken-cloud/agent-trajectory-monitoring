@@ -1,0 +1,11 @@
+google-adk>=2.0
+google-cloud-bigquery>=3.20
+google-cloud-pubsub>=2.20
+PyYAML>=6.0
+# `adk deploy agent_engine` imports vertexai; without this it fails with
+# "No module named 'vertexai'" AND STILL EXITS 0.
+google-cloud-aiplatform[agent_engines]>=1.60
+# aiplatform[agent_engines] pulls otel 1.44 which google-adk 2.6.3 rejects.
+opentelemetry-api<=1.42.1
+opentelemetry-sdk<=1.42.1
+opentelemetry-exporter-otlp-proto-http<=1.42.1

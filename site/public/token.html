@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent trajectory monitoring — access</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+:root{color-scheme:light;--surface:#fcfcfb;--plane:#f9f9f7;--ink:#0b0b0b;
+ --ink-2:#52514e;--muted:#898781;--ring:rgba(11,11,11,.10);--accent:#2a78d6;
+ --crit:#d03b3b;--code:#f4f3ef}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+ --surface:#1a1a19;--plane:#0d0d0d;--ink:#fff;--ink-2:#c3c2b7;
+ --ring:rgba(255,255,255,.10);--accent:#3987e5;--code:#141413}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;
+ background:var(--plane);color:var(--ink);
+ font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:12px;
+ padding:32px;width:100%;max-width:420px}
+h1{font-size:19px;margin:0 0 6px}
+p{color:var(--ink-2);font-size:13.5px;margin:0 0 20px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+input{width:100%;padding:10px 12px;font:15px system-ui,sans-serif;
+ background:var(--code);color:var(--ink);
+ border:1px solid var(--ring);border-radius:8px}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+button{margin-top:14px;width:100%;padding:10px;font:600 14px system-ui,sans-serif;
+ background:var(--accent);color:#fff;border:0;border-radius:8px;cursor:pointer}
+.err{display:none;margin-top:14px;font-size:13px;color:var(--crit)}
+.err.on{display:block}
+.foot{margin-top:22px;font-size:12px;color:var(--muted)}
+</style></head><body>
+<form class="card" onsubmit="go(event)">
+  <h1>Agent trajectory monitoring</h1>
+  <p>Signed in. Enter the workshop token to open the lab guide.</p>
+  <label for="t">Access token</label>
+  <input id="t" name="t" autocomplete="off" autofocus spellcheck="false">
+  <button type="submit">Open lab guide</button>
+  <div id="e" class="err">That token is not right. Check with your facilitator.</div>
+  <div class="foot">7-hour hands-on lab · Google internal</div>
+</form>
+<script>
+// The token is NOT checked here. This page only stores what you typed; nginx
+// compares it. Keeping the comparison server-side means the value never ships
+// to the browser, so "view source" does not hand out the answer.
+if (location.search.includes('e=1')) document.getElementById('e').classList.add('on');
+function go(ev){
+  ev.preventDefault();
+  const v = document.getElementById('t').value.trim();
+  document.cookie = 'site_token=' + encodeURIComponent(v) +
+                    '; path=/; max-age=' + 60*60*24*30 + '; samesite=lax';
+  location.href = '/';
+}
+</script></body></html>

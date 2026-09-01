@@ -1,0 +1,132 @@
+[
+  {
+    "name": "tool_call_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "invocation_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "session_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agent_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "tool_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "ts",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "llm_call_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "origin",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "args_redacted",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "args_hash",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "justification",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "status",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "error_class",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "latency_ms",
+    "type": "INT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "ended_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "sensitivity",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_egress",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_mutating",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "result_trust_label",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "off_manifest",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "data_assets_read",
+    "type": "STRING",
+    "mode": "REPEATED"
+  },
+  {
+    "name": "external_endpoints_written",
+    "type": "STRING",
+    "mode": "REPEATED"
+  },
+  {
+    "name": "enforcement_action",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "enforcement_rule",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "schema_version",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

@@ -1,0 +1,1826 @@
+[
+ {
+  "order_id": "ORD-537941",
+  "customer_id": "CUST-1000",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 198
+ },
+ {
+  "order_id": "ORD-354750",
+  "customer_id": "CUST-1001",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 149
+ },
+ {
+  "order_id": "ORD-544234",
+  "customer_id": "CUST-1002",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 24
+ },
+ {
+  "order_id": "ORD-803731",
+  "customer_id": "CUST-1003",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 31
+ },
+ {
+  "order_id": "ORD-928243",
+  "customer_id": "CUST-1004",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 125
+ },
+ {
+  "order_id": "ORD-360857",
+  "customer_id": "CUST-1005",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 210
+ },
+ {
+  "order_id": "ORD-316244",
+  "customer_id": "CUST-1005",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 169
+ },
+ {
+  "order_id": "ORD-876668",
+  "customer_id": "CUST-1006",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 127
+ },
+ {
+  "order_id": "ORD-405999",
+  "customer_id": "CUST-1006",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 44
+ },
+ {
+  "order_id": "ORD-248748",
+  "customer_id": "CUST-1007",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 192
+ },
+ {
+  "order_id": "ORD-787154",
+  "customer_id": "CUST-1008",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 231
+ },
+ {
+  "order_id": "ORD-640918",
+  "customer_id": "CUST-1009",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 253
+ },
+ {
+  "order_id": "ORD-168666",
+  "customer_id": "CUST-1010",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 68
+ },
+ {
+  "order_id": "ORD-246411",
+  "customer_id": "CUST-1011",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 169
+ },
+ {
+  "order_id": "ORD-612908",
+  "customer_id": "CUST-1011",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 272
+ },
+ {
+  "order_id": "ORD-572416",
+  "customer_id": "CUST-1011",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "in_transit",
+  "ordered_days_ago": 201
+ },
+ {
+  "order_id": "ORD-911065",
+  "customer_id": "CUST-1012",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 52
+ },
+ {
+  "order_id": "ORD-617723",
+  "customer_id": "CUST-1013",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 49
+ },
+ {
+  "order_id": "ORD-972261",
+  "customer_id": "CUST-1013",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 140
+ },
+ {
+  "order_id": "ORD-990788",
+  "customer_id": "CUST-1013",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 199
+ },
+ {
+  "order_id": "ORD-642355",
+  "customer_id": "CUST-1014",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 239
+ },
+ {
+  "order_id": "ORD-703359",
+  "customer_id": "CUST-1014",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 130
+ },
+ {
+  "order_id": "ORD-270504",
+  "customer_id": "CUST-1014",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 108
+ },
+ {
+  "order_id": "ORD-317754",
+  "customer_id": "CUST-1015",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "in_transit",
+  "ordered_days_ago": 204
+ },
+ {
+  "order_id": "ORD-641754",
+  "customer_id": "CUST-1015",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 185
+ },
+ {
+  "order_id": "ORD-982056",
+  "customer_id": "CUST-1015",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 133
+ },
+ {
+  "order_id": "ORD-262331",
+  "customer_id": "CUST-1016",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 17
+ },
+ {
+  "order_id": "ORD-292801",
+  "customer_id": "CUST-1016",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 293
+ },
+ {
+  "order_id": "ORD-469466",
+  "customer_id": "CUST-1017",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 38
+ },
+ {
+  "order_id": "ORD-170645",
+  "customer_id": "CUST-1017",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 271
+ },
+ {
+  "order_id": "ORD-900774",
+  "customer_id": "CUST-1018",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 65
+ },
+ {
+  "order_id": "ORD-270680",
+  "customer_id": "CUST-1018",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 201
+ },
+ {
+  "order_id": "ORD-939943",
+  "customer_id": "CUST-1018",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 261
+ },
+ {
+  "order_id": "ORD-541859",
+  "customer_id": "CUST-1019",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 39
+ },
+ {
+  "order_id": "ORD-175992",
+  "customer_id": "CUST-1019",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 44
+ },
+ {
+  "order_id": "ORD-697703",
+  "customer_id": "CUST-1020",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 40
+ },
+ {
+  "order_id": "ORD-219827",
+  "customer_id": "CUST-1020",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 219
+ },
+ {
+  "order_id": "ORD-857067",
+  "customer_id": "CUST-1021",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 97
+ },
+ {
+  "order_id": "ORD-813280",
+  "customer_id": "CUST-1022",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 286
+ },
+ {
+  "order_id": "ORD-777157",
+  "customer_id": "CUST-1023",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 222
+ },
+ {
+  "order_id": "ORD-612542",
+  "customer_id": "CUST-1023",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 286
+ },
+ {
+  "order_id": "ORD-153484",
+  "customer_id": "CUST-1024",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 65
+ },
+ {
+  "order_id": "ORD-831590",
+  "customer_id": "CUST-1024",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 234
+ },
+ {
+  "order_id": "ORD-254619",
+  "customer_id": "CUST-1024",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 151
+ },
+ {
+  "order_id": "ORD-349756",
+  "customer_id": "CUST-1025",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 105
+ },
+ {
+  "order_id": "ORD-831147",
+  "customer_id": "CUST-1026",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 182
+ },
+ {
+  "order_id": "ORD-233556",
+  "customer_id": "CUST-1026",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 57
+ },
+ {
+  "order_id": "ORD-708198",
+  "customer_id": "CUST-1027",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 273
+ },
+ {
+  "order_id": "ORD-761213",
+  "customer_id": "CUST-1028",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 56
+ },
+ {
+  "order_id": "ORD-800728",
+  "customer_id": "CUST-1029",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 18
+ },
+ {
+  "order_id": "ORD-887829",
+  "customer_id": "CUST-1029",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "returned",
+  "ordered_days_ago": 229
+ },
+ {
+  "order_id": "ORD-645537",
+  "customer_id": "CUST-1030",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 221
+ },
+ {
+  "order_id": "ORD-482963",
+  "customer_id": "CUST-1030",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 171
+ },
+ {
+  "order_id": "ORD-658829",
+  "customer_id": "CUST-1030",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 101
+ },
+ {
+  "order_id": "ORD-257359",
+  "customer_id": "CUST-1031",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 182
+ },
+ {
+  "order_id": "ORD-970901",
+  "customer_id": "CUST-1031",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 91
+ },
+ {
+  "order_id": "ORD-358273",
+  "customer_id": "CUST-1032",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 141
+ },
+ {
+  "order_id": "ORD-575283",
+  "customer_id": "CUST-1032",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 29
+ },
+ {
+  "order_id": "ORD-818725",
+  "customer_id": "CUST-1032",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 143
+ },
+ {
+  "order_id": "ORD-944873",
+  "customer_id": "CUST-1033",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "in_transit",
+  "ordered_days_ago": 69
+ },
+ {
+  "order_id": "ORD-508297",
+  "customer_id": "CUST-1034",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 126
+ },
+ {
+  "order_id": "ORD-789369",
+  "customer_id": "CUST-1034",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 147
+ },
+ {
+  "order_id": "ORD-437745",
+  "customer_id": "CUST-1035",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 125
+ },
+ {
+  "order_id": "ORD-580602",
+  "customer_id": "CUST-1035",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 281
+ },
+ {
+  "order_id": "ORD-985238",
+  "customer_id": "CUST-1036",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 154
+ },
+ {
+  "order_id": "ORD-338827",
+  "customer_id": "CUST-1036",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 262
+ },
+ {
+  "order_id": "ORD-646508",
+  "customer_id": "CUST-1037",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 265
+ },
+ {
+  "order_id": "ORD-979633",
+  "customer_id": "CUST-1038",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 256
+ },
+ {
+  "order_id": "ORD-260738",
+  "customer_id": "CUST-1039",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "in_transit",
+  "ordered_days_ago": 81
+ },
+ {
+  "order_id": "ORD-528681",
+  "customer_id": "CUST-1039",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 236
+ },
+ {
+  "order_id": "ORD-772069",
+  "customer_id": "CUST-1039",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 114
+ },
+ {
+  "order_id": "ORD-785573",
+  "customer_id": "CUST-1040",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 164
+ },
+ {
+  "order_id": "ORD-465309",
+  "customer_id": "CUST-1040",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 206
+ },
+ {
+  "order_id": "ORD-968846",
+  "customer_id": "CUST-1041",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 137
+ },
+ {
+  "order_id": "ORD-755494",
+  "customer_id": "CUST-1041",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 15
+ },
+ {
+  "order_id": "ORD-201236",
+  "customer_id": "CUST-1042",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 81
+ },
+ {
+  "order_id": "ORD-428092",
+  "customer_id": "CUST-1043",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 205
+ },
+ {
+  "order_id": "ORD-420601",
+  "customer_id": "CUST-1043",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 187
+ },
+ {
+  "order_id": "ORD-898194",
+  "customer_id": "CUST-1043",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 143
+ },
+ {
+  "order_id": "ORD-899062",
+  "customer_id": "CUST-1044",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 204
+ },
+ {
+  "order_id": "ORD-634650",
+  "customer_id": "CUST-1044",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 223
+ },
+ {
+  "order_id": "ORD-345139",
+  "customer_id": "CUST-1045",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "in_transit",
+  "ordered_days_ago": 284
+ },
+ {
+  "order_id": "ORD-459017",
+  "customer_id": "CUST-1045",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "returned",
+  "ordered_days_ago": 179
+ },
+ {
+  "order_id": "ORD-126901",
+  "customer_id": "CUST-1045",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 23
+ },
+ {
+  "order_id": "ORD-542100",
+  "customer_id": "CUST-1046",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "in_transit",
+  "ordered_days_ago": 212
+ },
+ {
+  "order_id": "ORD-783547",
+  "customer_id": "CUST-1046",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 159
+ },
+ {
+  "order_id": "ORD-287399",
+  "customer_id": "CUST-1046",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 25
+ },
+ {
+  "order_id": "ORD-542887",
+  "customer_id": "CUST-1047",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 26
+ },
+ {
+  "order_id": "ORD-328636",
+  "customer_id": "CUST-1047",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 153
+ },
+ {
+  "order_id": "ORD-987743",
+  "customer_id": "CUST-1047",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 200
+ },
+ {
+  "order_id": "ORD-791014",
+  "customer_id": "CUST-1048",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 197
+ },
+ {
+  "order_id": "ORD-561901",
+  "customer_id": "CUST-1049",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 162
+ },
+ {
+  "order_id": "ORD-291340",
+  "customer_id": "CUST-1049",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 286
+ },
+ {
+  "order_id": "ORD-778525",
+  "customer_id": "CUST-1050",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 188
+ },
+ {
+  "order_id": "ORD-172943",
+  "customer_id": "CUST-1050",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 79
+ },
+ {
+  "order_id": "ORD-650038",
+  "customer_id": "CUST-1050",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 231
+ },
+ {
+  "order_id": "ORD-336270",
+  "customer_id": "CUST-1051",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 107
+ },
+ {
+  "order_id": "ORD-539819",
+  "customer_id": "CUST-1051",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 115
+ },
+ {
+  "order_id": "ORD-795838",
+  "customer_id": "CUST-1052",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 84
+ },
+ {
+  "order_id": "ORD-411859",
+  "customer_id": "CUST-1052",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 179
+ },
+ {
+  "order_id": "ORD-920999",
+  "customer_id": "CUST-1053",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 106
+ },
+ {
+  "order_id": "ORD-601635",
+  "customer_id": "CUST-1053",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 181
+ },
+ {
+  "order_id": "ORD-699585",
+  "customer_id": "CUST-1054",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 103
+ },
+ {
+  "order_id": "ORD-264503",
+  "customer_id": "CUST-1054",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "in_transit",
+  "ordered_days_ago": 185
+ },
+ {
+  "order_id": "ORD-197910",
+  "customer_id": "CUST-1054",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 37
+ },
+ {
+  "order_id": "ORD-806080",
+  "customer_id": "CUST-1055",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 223
+ },
+ {
+  "order_id": "ORD-379316",
+  "customer_id": "CUST-1055",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 296
+ },
+ {
+  "order_id": "ORD-191898",
+  "customer_id": "CUST-1056",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 195
+ },
+ {
+  "order_id": "ORD-980795",
+  "customer_id": "CUST-1056",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 218
+ },
+ {
+  "order_id": "ORD-610137",
+  "customer_id": "CUST-1056",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 291
+ },
+ {
+  "order_id": "ORD-186320",
+  "customer_id": "CUST-1057",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 95
+ },
+ {
+  "order_id": "ORD-468504",
+  "customer_id": "CUST-1058",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 230
+ },
+ {
+  "order_id": "ORD-268080",
+  "customer_id": "CUST-1059",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 26
+ },
+ {
+  "order_id": "ORD-252922",
+  "customer_id": "CUST-1060",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 141
+ },
+ {
+  "order_id": "ORD-655903",
+  "customer_id": "CUST-1061",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "in_transit",
+  "ordered_days_ago": 100
+ },
+ {
+  "order_id": "ORD-131562",
+  "customer_id": "CUST-1062",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 283
+ },
+ {
+  "order_id": "ORD-538534",
+  "customer_id": "CUST-1062",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 268
+ },
+ {
+  "order_id": "ORD-463093",
+  "customer_id": "CUST-1062",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 42
+ },
+ {
+  "order_id": "ORD-888499",
+  "customer_id": "CUST-1063",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 258
+ },
+ {
+  "order_id": "ORD-554144",
+  "customer_id": "CUST-1064",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 107
+ },
+ {
+  "order_id": "ORD-223910",
+  "customer_id": "CUST-1064",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "in_transit",
+  "ordered_days_ago": 13
+ },
+ {
+  "order_id": "ORD-990204",
+  "customer_id": "CUST-1065",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 147
+ },
+ {
+  "order_id": "ORD-855792",
+  "customer_id": "CUST-1065",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 29
+ },
+ {
+  "order_id": "ORD-478816",
+  "customer_id": "CUST-1065",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 177
+ },
+ {
+  "order_id": "ORD-583290",
+  "customer_id": "CUST-1066",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 121
+ },
+ {
+  "order_id": "ORD-718627",
+  "customer_id": "CUST-1067",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 68
+ },
+ {
+  "order_id": "ORD-445904",
+  "customer_id": "CUST-1068",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 263
+ },
+ {
+  "order_id": "ORD-180362",
+  "customer_id": "CUST-1068",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 82
+ },
+ {
+  "order_id": "ORD-372221",
+  "customer_id": "CUST-1069",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 72
+ },
+ {
+  "order_id": "ORD-222859",
+  "customer_id": "CUST-1069",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 36
+ },
+ {
+  "order_id": "ORD-371190",
+  "customer_id": "CUST-1070",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 280
+ },
+ {
+  "order_id": "ORD-958485",
+  "customer_id": "CUST-1070",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 126
+ },
+ {
+  "order_id": "ORD-881902",
+  "customer_id": "CUST-1071",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 40
+ },
+ {
+  "order_id": "ORD-652102",
+  "customer_id": "CUST-1071",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 270
+ },
+ {
+  "order_id": "ORD-676529",
+  "customer_id": "CUST-1072",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 155
+ },
+ {
+  "order_id": "ORD-240358",
+  "customer_id": "CUST-1072",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 164
+ },
+ {
+  "order_id": "ORD-196260",
+  "customer_id": "CUST-1073",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 78
+ },
+ {
+  "order_id": "ORD-813257",
+  "customer_id": "CUST-1074",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 193
+ },
+ {
+  "order_id": "ORD-542480",
+  "customer_id": "CUST-1074",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 13
+ },
+ {
+  "order_id": "ORD-683970",
+  "customer_id": "CUST-1075",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 145
+ },
+ {
+  "order_id": "ORD-360021",
+  "customer_id": "CUST-1075",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 196
+ },
+ {
+  "order_id": "ORD-147557",
+  "customer_id": "CUST-1075",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 294
+ },
+ {
+  "order_id": "ORD-940919",
+  "customer_id": "CUST-1076",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 245
+ },
+ {
+  "order_id": "ORD-389351",
+  "customer_id": "CUST-1076",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 159
+ },
+ {
+  "order_id": "ORD-846618",
+  "customer_id": "CUST-1076",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 300
+ },
+ {
+  "order_id": "ORD-615626",
+  "customer_id": "CUST-1077",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 176
+ },
+ {
+  "order_id": "ORD-256641",
+  "customer_id": "CUST-1077",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 97
+ },
+ {
+  "order_id": "ORD-174644",
+  "customer_id": "CUST-1078",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 121
+ },
+ {
+  "order_id": "ORD-483152",
+  "customer_id": "CUST-1079",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 235
+ },
+ {
+  "order_id": "ORD-409077",
+  "customer_id": "CUST-1079",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 87
+ },
+ {
+  "order_id": "ORD-175032",
+  "customer_id": "CUST-1080",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "in_transit",
+  "ordered_days_ago": 276
+ },
+ {
+  "order_id": "ORD-602993",
+  "customer_id": "CUST-1080",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 11
+ },
+ {
+  "order_id": "ORD-345082",
+  "customer_id": "CUST-1081",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "in_transit",
+  "ordered_days_ago": 218
+ },
+ {
+  "order_id": "ORD-561495",
+  "customer_id": "CUST-1081",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 229
+ },
+ {
+  "order_id": "ORD-517415",
+  "customer_id": "CUST-1081",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 177
+ },
+ {
+  "order_id": "ORD-951735",
+  "customer_id": "CUST-1082",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 228
+ },
+ {
+  "order_id": "ORD-579996",
+  "customer_id": "CUST-1082",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 53
+ },
+ {
+  "order_id": "ORD-751659",
+  "customer_id": "CUST-1082",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 258
+ },
+ {
+  "order_id": "ORD-470958",
+  "customer_id": "CUST-1083",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 215
+ },
+ {
+  "order_id": "ORD-853766",
+  "customer_id": "CUST-1083",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 274
+ },
+ {
+  "order_id": "ORD-988710",
+  "customer_id": "CUST-1084",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 278
+ },
+ {
+  "order_id": "ORD-583186",
+  "customer_id": "CUST-1084",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 167
+ },
+ {
+  "order_id": "ORD-477552",
+  "customer_id": "CUST-1085",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 209
+ },
+ {
+  "order_id": "ORD-733228",
+  "customer_id": "CUST-1086",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 189
+ },
+ {
+  "order_id": "ORD-647362",
+  "customer_id": "CUST-1086",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 70
+ },
+ {
+  "order_id": "ORD-413447",
+  "customer_id": "CUST-1087",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 16
+ },
+ {
+  "order_id": "ORD-656977",
+  "customer_id": "CUST-1087",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 243
+ },
+ {
+  "order_id": "ORD-449113",
+  "customer_id": "CUST-1088",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 163
+ },
+ {
+  "order_id": "ORD-566813",
+  "customer_id": "CUST-1089",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 141
+ },
+ {
+  "order_id": "ORD-613346",
+  "customer_id": "CUST-1090",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 60
+ },
+ {
+  "order_id": "ORD-964733",
+  "customer_id": "CUST-1090",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 147
+ },
+ {
+  "order_id": "ORD-244243",
+  "customer_id": "CUST-1090",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "returned",
+  "ordered_days_ago": 88
+ },
+ {
+  "order_id": "ORD-400116",
+  "customer_id": "CUST-1091",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "delivered",
+  "ordered_days_ago": 261
+ },
+ {
+  "order_id": "ORD-731223",
+  "customer_id": "CUST-1092",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "in_transit",
+  "ordered_days_ago": 61
+ },
+ {
+  "order_id": "ORD-305955",
+  "customer_id": "CUST-1093",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 228
+ },
+ {
+  "order_id": "ORD-611186",
+  "customer_id": "CUST-1093",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "returned",
+  "ordered_days_ago": 263
+ },
+ {
+  "order_id": "ORD-435381",
+  "customer_id": "CUST-1093",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 208
+ },
+ {
+  "order_id": "ORD-612960",
+  "customer_id": "CUST-1094",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 176
+ },
+ {
+  "order_id": "ORD-255244",
+  "customer_id": "CUST-1094",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 219
+ },
+ {
+  "order_id": "ORD-628195",
+  "customer_id": "CUST-1095",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 58
+ },
+ {
+  "order_id": "ORD-117274",
+  "customer_id": "CUST-1095",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 143
+ },
+ {
+  "order_id": "ORD-300721",
+  "customer_id": "CUST-1095",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 16
+ },
+ {
+  "order_id": "ORD-398340",
+  "customer_id": "CUST-1096",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 231
+ },
+ {
+  "order_id": "ORD-846320",
+  "customer_id": "CUST-1097",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 85
+ },
+ {
+  "order_id": "ORD-742033",
+  "customer_id": "CUST-1097",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "in_transit",
+  "ordered_days_ago": 181
+ },
+ {
+  "order_id": "ORD-192230",
+  "customer_id": "CUST-1098",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 33
+ },
+ {
+  "order_id": "ORD-330522",
+  "customer_id": "CUST-1098",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 259
+ },
+ {
+  "order_id": "ORD-655643",
+  "customer_id": "CUST-1098",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "delivered",
+  "ordered_days_ago": 49
+ },
+ {
+  "order_id": "ORD-335064",
+  "customer_id": "CUST-1099",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 291
+ },
+ {
+  "order_id": "ORD-566254",
+  "customer_id": "CUST-1100",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "returned",
+  "ordered_days_ago": 152
+ },
+ {
+  "order_id": "ORD-622148",
+  "customer_id": "CUST-1101",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 226
+ },
+ {
+  "order_id": "ORD-322643",
+  "customer_id": "CUST-1102",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 23
+ },
+ {
+  "order_id": "ORD-650903",
+  "customer_id": "CUST-1103",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 51
+ },
+ {
+  "order_id": "ORD-741331",
+  "customer_id": "CUST-1103",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 112
+ },
+ {
+  "order_id": "ORD-631296",
+  "customer_id": "CUST-1104",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 86
+ },
+ {
+  "order_id": "ORD-467543",
+  "customer_id": "CUST-1104",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "in_transit",
+  "ordered_days_ago": 164
+ },
+ {
+  "order_id": "ORD-931904",
+  "customer_id": "CUST-1105",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "in_transit",
+  "ordered_days_ago": 50
+ },
+ {
+  "order_id": "ORD-802056",
+  "customer_id": "CUST-1105",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 199
+ },
+ {
+  "order_id": "ORD-451162",
+  "customer_id": "CUST-1106",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 292
+ },
+ {
+  "order_id": "ORD-874171",
+  "customer_id": "CUST-1106",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 84
+ },
+ {
+  "order_id": "ORD-747161",
+  "customer_id": "CUST-1106",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "returned",
+  "ordered_days_ago": 2
+ },
+ {
+  "order_id": "ORD-394838",
+  "customer_id": "CUST-1107",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "delivered",
+  "ordered_days_ago": 26
+ },
+ {
+  "order_id": "ORD-628676",
+  "customer_id": "CUST-1108",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 22
+ },
+ {
+  "order_id": "ORD-690705",
+  "customer_id": "CUST-1108",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 15
+ },
+ {
+  "order_id": "ORD-590417",
+  "customer_id": "CUST-1108",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "returned",
+  "ordered_days_ago": 220
+ },
+ {
+  "order_id": "ORD-933829",
+  "customer_id": "CUST-1109",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 93
+ },
+ {
+  "order_id": "ORD-560662",
+  "customer_id": "CUST-1109",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 41
+ },
+ {
+  "order_id": "ORD-653172",
+  "customer_id": "CUST-1109",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 191
+ },
+ {
+  "order_id": "ORD-403482",
+  "customer_id": "CUST-1110",
+  "item": "Headlamp 400",
+  "amount": 41.5,
+  "status": "returned",
+  "ordered_days_ago": 148
+ },
+ {
+  "order_id": "ORD-890991",
+  "customer_id": "CUST-1111",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 241
+ },
+ {
+  "order_id": "ORD-939164",
+  "customer_id": "CUST-1111",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 43
+ },
+ {
+  "order_id": "ORD-103500",
+  "customer_id": "CUST-1111",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "returned",
+  "ordered_days_ago": 185
+ },
+ {
+  "order_id": "ORD-851200",
+  "customer_id": "CUST-1112",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "returned",
+  "ordered_days_ago": 6
+ },
+ {
+  "order_id": "ORD-537751",
+  "customer_id": "CUST-1112",
+  "item": "Merino Base Layer",
+  "amount": 64.5,
+  "status": "returned",
+  "ordered_days_ago": 187
+ },
+ {
+  "order_id": "ORD-110600",
+  "customer_id": "CUST-1112",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "in_transit",
+  "ordered_days_ago": 182
+ },
+ {
+  "order_id": "ORD-974669",
+  "customer_id": "CUST-1113",
+  "item": "Water Filter",
+  "amount": 89.0,
+  "status": "in_transit",
+  "ordered_days_ago": 96
+ },
+ {
+  "order_id": "ORD-817536",
+  "customer_id": "CUST-1114",
+  "item": "Camp Stove Mini",
+  "amount": 48.0,
+  "status": "delivered",
+  "ordered_days_ago": 183
+ },
+ {
+  "order_id": "ORD-630356",
+  "customer_id": "CUST-1114",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 117
+ },
+ {
+  "order_id": "ORD-252364",
+  "customer_id": "CUST-1115",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "delivered",
+  "ordered_days_ago": 181
+ },
+ {
+  "order_id": "ORD-921646",
+  "customer_id": "CUST-1115",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "delivered",
+  "ordered_days_ago": 21
+ },
+ {
+  "order_id": "ORD-341986",
+  "customer_id": "CUST-1115",
+  "item": "Down Quilt 0C",
+  "amount": 289.0,
+  "status": "in_transit",
+  "ordered_days_ago": 192
+ },
+ {
+  "order_id": "ORD-942901",
+  "customer_id": "CUST-1116",
+  "item": "Trek Pole Pair",
+  "amount": 78.0,
+  "status": "in_transit",
+  "ordered_days_ago": 285
+ },
+ {
+  "order_id": "ORD-803827",
+  "customer_id": "CUST-1116",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "delivered",
+  "ordered_days_ago": 109
+ },
+ {
+  "order_id": "ORD-831227",
+  "customer_id": "CUST-1116",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "returned",
+  "ordered_days_ago": 89
+ },
+ {
+  "order_id": "ORD-176507",
+  "customer_id": "CUST-1117",
+  "item": "Rain Shell 3L",
+  "amount": 219.0,
+  "status": "delivered",
+  "ordered_days_ago": 79
+ },
+ {
+  "order_id": "ORD-966110",
+  "customer_id": "CUST-1118",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 127
+ },
+ {
+  "order_id": "ORD-123732",
+  "customer_id": "CUST-1119",
+  "item": "Dry Bag 20L",
+  "amount": 32.0,
+  "status": "in_transit",
+  "ordered_days_ago": 242
+ },
+ {
+  "order_id": "ORD-616919",
+  "customer_id": "CUST-1119",
+  "item": "Trail Runner GTX",
+  "amount": 129.0,
+  "status": "delivered",
+  "ordered_days_ago": 16
+ }
+]
