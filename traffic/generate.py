@@ -270,7 +270,14 @@ async def main() -> None:
                                            outcome=outcome)
                     break
                 except Exception as exc:
-                    transient = "RESOURCE_EXHAUSTED" in str(exc) or "429" in str(exc)
+                    # 429 is the expected one (quota). 500/503/UNAVAILABLE are
+                    # just as transient and were NOT retried at first - a real
+                    # 2,000-session run lost a session to a bare 500 INTERNAL
+                    # while every 429 around it recovered.
+                    msg = str(exc)
+                    transient = any(s in msg for s in (
+                        "RESOURCE_EXHAUSTED", "429",
+                        "500", "INTERNAL", "503", "UNAVAILABLE", "DEADLINE_EXCEEDED"))
                     if transient and attempt < RETRIES - 1:
                         await asyncio.sleep(BACKOFF * (2 ** attempt))
                         continue
