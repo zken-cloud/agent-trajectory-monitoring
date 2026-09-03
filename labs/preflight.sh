@@ -13,8 +13,16 @@ echo "preflight: project=$P region=$L"
 echo "APIs:"
 # cloudbuild is required by `adk deploy gke` (it builds and pushes the image).
 # Missing it fails late and confusingly, as a permission denial on gcr.io.
+#
+# Match the WHOLE service name. `grep "^container"` also matches
+# containeranalysis and containerthreatdetection, both of which are on by
+# default in a fresh Argolis project - so container.googleapis.com reported
+# [ OK ] while GKE was not enabled at all. A false OK is worse than a FAIL:
+# it sends the attendee into `adk deploy gke` to meet a confusing permission
+# error instead of fixing the API here. Same trap for bigquery*, cloudbuild*.
+ENABLED="$(gcloud services list --enabled --project "$P" --format='value(config.name)' 2>/dev/null)"
 for api in aiplatform bigquery spanner container pubsub artifactregistry cloudtrace cloudbuild; do
-  gcloud services list --enabled --project "$P" 2>/dev/null | grep -q "^$api" \
+  grep -qx "$api.googleapis.com" <<<"$ENABLED" \
     && ok "$api.googleapis.com" || no "$api.googleapis.com not enabled"
 done
 

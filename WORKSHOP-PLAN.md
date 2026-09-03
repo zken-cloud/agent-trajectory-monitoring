@@ -366,7 +366,7 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 ### Still open
 
 - **Argolis quota/org-policy verification** (see §6) — cheapest possible thing to get wrong, most expensive to discover on the day. `labs/preflight.sh` exists and has never been run end-to-end on a clean attendee project. **This is the last blocking item.**
-- **`attack_real` is stale** — the real-model attack corpus was generated on `gemini-3.6-flash` and predates the 3.7 migration.
+- **Nothing else.** (`attack_real` regenerated on 3.7; see the note in LAB-GUIDE 2.2.3 — the real agent refuses all six attacks, which is evidence about the model and explicitly *not* usable as detection ground truth.)
 
 ### Resolved since
 
