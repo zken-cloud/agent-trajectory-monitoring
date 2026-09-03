@@ -365,8 +365,14 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 ### Still open
 
-- **Argolis quota/org-policy verification** (see §6) — cheapest possible thing to get wrong, most expensive to discover on the day. `labs/preflight.sh` exists and has never been run end-to-end on a clean attendee project. **This is the last blocking item.**
-- **Nothing else.** (`attack_real` regenerated on 3.7; see the note in LAB-GUIDE 2.2.3 — the real agent refuses all six attacks, which is evidence about the model and explicitly *not* usable as detection ground truth.)
+- **Slides (B14).** The lab guide is written and hosted; there is no slide deck. The narrative exists — README's assurance argument, the gap worksheet, the ladder — but nobody has built the deck that carries the non-lab half of the day (opening threat model, Crescendo background, the Wiz/enterprise-destination discussion, the wrap).
+- **Looker Studio copy check.** `preflight.sh` marks it `[MANUAL]` and cannot do better: it needs a browser and an attendee-shaped account to confirm an externally-shared report can be opened and copied. Verify once against a real Argolis account before relying on the B12 handover path.
+- **Re-run the clean-project preflight a few days before delivery.** Not a defect — a habit. The Layer 3 connection bug survived for weeks precisely because nobody applied to a clean project, and anything created by hand between now and the day will be invisible the same way.
+
+### Verified 2026-09-03 — no longer open
+
+- **Argolis quota/org-policy verification.** Run end-to-end on a genuinely fresh project (`trajectory-preflight-0903`, since deleted): `terraform apply` 39 added / 0 changed / 0 destroyed, then **PREFLIGHT PASS** on every automated check. It found two real bugs on the way — a false `[ OK ]` on the container API from a prefix-matching grep, and the missing BigQuery AI connection that left Layer 3 dead on arrival. `terraform destroy` then removed all 41 resources with nothing stranded.
+- **`attack_real`** regenerated on 3.7. See LAB-GUIDE 2.2.3 — the real agent refuses all six attacks, which is evidence about the model and explicitly *not* usable as detection ground truth.
 
 ### Resolved since
 
