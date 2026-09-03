@@ -150,7 +150,7 @@ def stage_demos() -> None:
     rebuilding twice does not stack banners.
     """
     for name, label in (("demo.html", "Scripted corpus &middot; 2,006 sessions"),
-                        ("demo-real.html", "Live-model corpus &middot; 1,992 sessions")):
+                        ("demo-real.html", "Live-model corpus &middot; 1,730 sessions")):
         f = OUT / name
         if not f.exists():
             continue

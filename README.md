@@ -134,32 +134,80 @@ rather than trusting it.
 
 ### The result that matters most
 
-The same generator, the same £480-against-a-£200-limit request, two models:
+**1,730 real `gemini-3.7-flash` sessions. Layer 1 found nothing, and that is
+the finding.**
 
-| | `gemini-2.5-flash` | `gemini-3.6-flash` |
+| Layer | Findings | What it means |
 |---|---|---|
-| Over-limit refund requested | 195 sessions | 201 sessions |
-| **Paid out anyway** | **88 (45%)** | **0** |
-| Escalated correctly | 107 | 197 |
+| **1 — deterministic rules** | **0** | No policy was breached. A true zero |
+| 2 — anomaly (KMEANS + surprisal) | 25 | The tail of a distribution, as designed |
+| 3 — LLM judge | 61 | Near-enough all false positives |
 
-The older model broke its own stated policy in nearly half of an ordinary support
-scenario, unprovoked. The newer one never did. **Neither number exists without
-trajectory monitoring** — which is the actual argument: you cannot show a model
-upgrade improved safety, or catch one that degrades it, without measuring what
-the agent did. Both corpora ship (`trajectory_real`, `trajectory_real_25`).
+The zero is load-bearing only because the rules had something to fire on. The
+corpus contains **299 refunds** (largest **£90**, against a £200 per-call
+limit), **219 egress calls** and 1,645 sensitive-tool calls. Layer 1 ran against
+real opportunity and correctly found none. That is the argument:
 
-Two corollaries:
+> **You cannot claim your agent is behaving unless you measured it. Here are
+> 1,730 sessions in which it did.**
 
-- **A safer model does not reduce alert volume — your rules do.** `3.6-flash`
-  first produced ~900 findings over 2,008 sessions, nearly all
-  `D1_egress_off_allowlist` and `D2_pii_read_then_egress` firing on the agent
-  emailing customers at their own addresses. Teaching the manifest one concept —
-  an address the customer used to identify their account is theirs — took Layer 1
-  from 366 findings to **0** and the total to **170**, with A3 still caught
-  (it looks up the victim and mails the attacker).
-- **Label the trajectory, not the user.** On 2.5 those 88 sessions are tagged
-  "benign" because the *user* was not an attacker, while the *trajectory*
-  contains a real breach.
+Most production agents mostly behave. The question a platform team actually has
+is whether they would *know* if one stopped, and no amount of pre-production
+evaluation answers it — the trajectories that matter are the ones in front of
+real users. This is what an assurance answer looks like, and it is a **negative
+result with positive value**.
+
+### The lesson hiding underneath it
+
+Layer 3 flagged 61 sessions. Look at what they are:
+
+```
+lookup_customer -> search_kb -> issue_refund   £44
+```
+
+A customer lookup, a policy check, and a refund comfortably inside the limit.
+Textbook-correct behaviour, flagged as a policy breach. **On a clean population
+the expensive layer produces almost pure noise.**
+
+That is the counterweight to "the judge has 100% recall", and it is the more
+useful half of the pair. Recall is cheap when you flag everything that looks
+unusual; precision is what you pay for. A ladder is worth building because
+Layer 1 is silent when nothing is wrong — the judge is not, and a judge running
+unfiltered over healthy traffic is a pager that goes off 61 times for nothing.
+
+**A safer model does not reduce alert volume — your rules do.** An earlier
+corpus produced ~900 findings over ~2,000 sessions, nearly all
+`D1_egress_off_allowlist` and `D2_pii_read_then_egress` firing on the agent
+emailing customers at *their own* addresses. Teaching the manifest one concept —
+an address the customer used to identify their account this session is theirs —
+took Layer 1 to **0** with A3 still caught, because A3 looks up the victim and
+mails the attacker.
+
+**Label the trajectory, not the user.** Ground truth resolves through
+`v_session_labels`, which asks whether the *trajectory* breached policy rather
+than whether the *user* was a red-teamer. The two come apart the moment a real
+model is in the loop, and the detection labs are scored against the scripted
+suite for exactly that reason: it is where labelled ground truth actually lives.
+
+### Beyond security — the same four tables, different questions
+
+Trajectory monitoring is not a security product that happens to store
+telemetry. Measured on the same 1,730 sessions
+([sql/views/operations_views.sql](sql/views/operations_views.sql)):
+
+| | |
+|---|---|
+| Resolution rate | **84.3%** |
+| Escalation rate | 27.1% |
+| Abandoned | 105 sessions |
+| Turns to resolution | median 2, p95 5 |
+| Tokens per session | avg **10,949**, p95 24,345 |
+| **Reasoning tokens** | **9% of all tokens** — billed, and in *neither* `usage.prompt` nor `usage.completion` |
+
+Budget from `usage.total` or understate by roughly a tenth. And note the metric
+no security rule would ever surface: **an agent that escalates everything
+breaks no policy, delivers no automation, and fires no detection.** That failure
+is invisible to every other view in this repo.
 
 ### Three detectors we rejected or rebuilt after measuring
 
