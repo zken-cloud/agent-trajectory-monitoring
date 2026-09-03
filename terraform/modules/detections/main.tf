@@ -1,6 +1,41 @@
 variable "project_id" { type = string }
-variable "region"     { type = string }
+variable "region" { type = string }
 variable "dataset_id" { type = string }
+
+# THE BIGQUERY AI CONNECTION - without this, Layer 3 does not exist.
+#
+# Terraform did not create this, and a clean-project test is what found it:
+# `terraform apply` succeeded on a fresh Argolis project, everything looked
+# healthy, and then AI.GENERATE_BOOL failed because the connection it names had
+# never been made. run_detections.sh defaults to "$PROJECT.us.trajectory_ai" and
+# sql/layer3/judge.sql passes it as connection_id, so on a fresh attendee
+# project the entire judgment layer was dead on arrival - in Lab 2.5, with 40
+# people watching.
+#
+# Location is the US MULTI-REGION, matching the dataset. It must agree with
+# whatever run_detections.sh resolves, or the query fails with a not-found that
+# reads like a permission problem.
+resource "google_bigquery_connection" "ai" {
+  connection_id = "trajectory_ai"
+  project       = var.project_id
+  location      = "US"
+  description   = "Vertex AI access for AI.GENERATE_BOOL (Layer 3 judge)"
+  cloud_resource {}
+}
+
+# The connection gets its own Google-managed service account, and it is THAT
+# identity that calls Vertex - not the caller's. Skip this grant and the query
+# fails with a permission error naming a bqcx-* principal nobody recognises.
+#
+# The grant takes a minute or two to propagate. AI.GENERATE_BOOL immediately
+# after `terraform apply` returns "does not have the permission to access
+# resources used by AI.GENERATE_BOOL" even though the binding is already in
+# place - that is propagation, not a broken config. Re-run before debugging it.
+resource "google_project_iam_member" "ai_connection_vertex" {
+  project = var.project_id
+  role    = "roles/aiplatform.user"
+  member  = "serviceAccount:${google_bigquery_connection.ai.cloud_resource[0].service_account_id}"
+}
 
 # Scheduled queries run unattended, so they need an identity of their own:
 #   Error 400: Failed to find a valid credential. The field 'version_info' or
@@ -30,7 +65,7 @@ resource "google_service_account_iam_member" "scheduler_token" {
 # fitted on traffic containing the attacks learns the attacks as normal.
 locals {
   layer1_rules = ["d1_policy_violation", "d2b_refined", "d3_tool_loop",
-                  "d4_refund_aggregate", "d5_off_manifest"]
+  "d4_refund_aggregate", "d5_off_manifest"]
 }
 
 # WRITE_APPEND + a schedule means the SAME finding is re-inserted on every run:
@@ -67,7 +102,7 @@ resource "google_bigquery_data_transfer_config" "layer1" {
 resource "google_bigquery_data_transfer_config" "layer2_surprisal" {
   display_name           = "layer2-transition-surprisal"
   data_source_id         = "scheduled_query"
-  schedule               = "every 6 hours"     # after Layer 1 has populated findings
+  schedule               = "every 6 hours" # after Layer 1 has populated findings
   destination_dataset_id = var.dataset_id
   location               = "US"
   service_account_name   = google_service_account.scheduler.email
@@ -120,4 +155,9 @@ resource "google_bigquery_data_transfer_config" "findings_dedupe" {
       COMMIT TRANSACTION;
     SQL
   }
+}
+
+output "ai_connection" {
+  description = "Pass to run_detections.sh as AI_CONNECTION"
+  value       = "${var.project_id}.us.${google_bigquery_connection.ai.connection_id}"
 }

@@ -1,11 +1,11 @@
-variable "project_id"       { type = string }
-variable "region"           { type = string }
+variable "project_id" { type = string }
+variable "region" { type = string }
 variable "processing_units" {
-  type = number
+  type    = number
   default = 100
 }
 variable "labels" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 resource "google_spanner_instance" "graph" {
@@ -34,7 +34,7 @@ resource "google_spanner_database" "graph" {
   # statement separator so the file stays readable and reviewable as SQL.
   ddl = [
     for stmt in split(";", replace(file("${path.module}/../../../spanner/schema.sql"),
-                                   "/(?m)^\\s*--.*$/", "")) :
+    "/(?m)^\\s*--.*$/", "")) :
     trimspace(stmt) if trimspace(stmt) != ""
   ]
   deletion_protection = false

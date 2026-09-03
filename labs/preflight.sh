@@ -75,7 +75,7 @@ if bq --project_id="$P" query --use_legacy_sql=false --format=none \
      >/dev/null 2>&1; then
   ok "AI.GENERATE_BOOL reaches gemini-3.7-flash (in-BigQuery judge)"
 else
-  no "AI.GENERATE_BOOL cannot reach gemini-3.7-flash - check the us.trajectory_ai connection"
+  no "AI.GENERATE_BOOL cannot reach gemini-3.7-flash - check the us.trajectory_ai connection exists (terraform creates it) and that its bqcx-* service account has roles/aiplatform.user; the grant takes 1-2 min to propagate after apply"
 fi
 
 echo "Org policy:"

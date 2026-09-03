@@ -1,12 +1,12 @@
 variable "project_id" { type = string }
-variable "region"     { type = string }
+variable "region" { type = string }
 variable "dataset_id" { type = string }
 variable "enable_streaming" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "labels" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 resource "google_bigquery_dataset" "trajectory" {
@@ -73,7 +73,7 @@ resource "google_bigquery_table" "telemetry_raw_parsed" {
   deletion_protection = false
   view {
     use_legacy_sql = false
-    query = <<-SQL
+    query          = <<-SQL
       SELECT
         publish_time,
         JSON_VALUE(PARSE_JSON(data), '$.table')            AS target_table,
@@ -150,5 +150,5 @@ resource "google_pubsub_subscription" "to_bigquery" {
 }
 
 output "dataset_id" { value = google_bigquery_dataset.trajectory.dataset_id }
-output "topic_id"   { value = try(google_pubsub_topic.telemetry[0].id, null) }
+output "topic_id" { value = try(google_pubsub_topic.telemetry[0].id, null) }
 output "topic_name" { value = try(google_pubsub_topic.telemetry[0].name, "") }

@@ -1,10 +1,10 @@
 variable "project_id" { type = string }
 variable "region" {
-  type = string
+  type    = string
   default = "us-central1"
 }
 variable "dataset_id" {
-  type = string
+  type    = string
   default = "trajectory"
 }
 # The single highest-leverage cost guardrail in the build. 100 PU is the Spanner
@@ -20,11 +20,11 @@ variable "spanner_processing_units" {
 }
 
 variable "enable_streaming" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "enable_gke" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "labels" {

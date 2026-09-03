@@ -1,7 +1,7 @@
 variable "project_id" { type = string }
-variable "region"     { type = string }
+variable "region" { type = string }
 variable "labels" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 resource "google_artifact_registry_repository" "images" {
@@ -154,6 +154,6 @@ resource "google_service_account_iam_member" "workload_identity" {
   depends_on         = [google_container_cluster.agent]
 }
 
-output "cluster_name"    { value = google_container_cluster.agent.name }
+output "cluster_name" { value = google_container_cluster.agent.name }
 output "service_account" { value = google_service_account.agent.email }
 output "repository" { value = google_artifact_registry_repository.images.name }
