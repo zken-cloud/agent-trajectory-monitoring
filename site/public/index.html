@@ -1381,9 +1381,12 @@ graph are the artifacts of the whole day.</p>
   them, so a destroy leaves them running and billing. There is also no
   <code>gcloud ai reasoning-engines</code> verb, so the CLI cannot even list them — the
   script goes to the REST API to find and delete them.</li>
-<li><strong><code>--all</code> removes the out-of-band <code>trajectory_real</code> Spanner database and
-  BigQuery dataset</strong>, which exist for the real-corpus comparison and which
-  Terraform has never known about.</li>
+<li><strong><code>--all</code> removes the out-of-band real-corpus resources</strong> — the
+  <code>trajectory_37</code> BigQuery dataset and the <code>trajectory_real</code> Spanner database.
+  These are created by <code>labs/load_corpus.sh</code> and <code>spanner/etl.py</code>, not by
+  Terraform, so <code>terraform destroy</code> leaves them running. The script lists them
+  by name: <strong>if you load a corpus under a dataset name of your own, add it
+  there or teardown will miss it silently.</strong></li>
 </ul>
 <p>Spanner is the one to watch if you keep the data: ~$0.123/hr, ~$21/week, and it
 bills whether or not anyone queries it.</p>
