@@ -52,12 +52,19 @@ fi
 echo "== Everything else (terraform)"
 terraform -chdir=terraform destroy -auto-approve -input=false -var "project_id=$P" 2>&1 | tail -3
 
-# Built out of band for the real-corpus graph comparison, so Terraform does not
-# know it exists and destroy will not touch it. Left behind, it is the kind of
+# Built out of band for the real-model corpus, so Terraform does not know they
+# exist and destroy will not touch them. Left behind, they are the kind of
 # resource nobody finds until the bill.
+#
+# Names are listed rather than derived: a dataset created by labs/load_corpus.sh
+# under a name nobody wrote down here survives teardown silently. Add yours.
 echo "== Unmanaged leftovers"
-gcloud spanner databases delete trajectory_real --instance=trajectory-graph \
-  --project="$P" --quiet 2>/dev/null && echo "  dropped spanner db trajectory_real" || true
-bq --project_id="$P" rm -r -f -d "${P}:trajectory_real" 2>/dev/null \
-  && echo "  dropped bq dataset trajectory_real" || true
+for db in trajectory_real; do
+  gcloud spanner databases delete "$db" --instance=trajectory-graph \
+    --project="$P" --quiet 2>/dev/null && echo "  dropped spanner db $db" || true
+done
+for ds in trajectory_37 trajectory_real trajectory_real_25; do
+  bq --project_id="$P" rm -r -f -d "${P}:${ds}" 2>/dev/null \
+    && echo "  dropped bq dataset $ds" || true
+done
 echo "done"

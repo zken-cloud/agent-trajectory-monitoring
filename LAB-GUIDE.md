@@ -1274,9 +1274,12 @@ Two things it does that `terraform destroy` alone will not:
   them, so a destroy leaves them running and billing. There is also no
   `gcloud ai reasoning-engines` verb, so the CLI cannot even list them — the
   script goes to the REST API to find and delete them.
-- **`--all` removes the out-of-band `trajectory_real` Spanner database and
-  BigQuery dataset**, which exist for the real-corpus comparison and which
-  Terraform has never known about.
+- **`--all` removes the out-of-band real-corpus resources** — the
+  `trajectory_37` BigQuery dataset and the `trajectory_real` Spanner database.
+  These are created by `labs/load_corpus.sh` and `spanner/etl.py`, not by
+  Terraform, so `terraform destroy` leaves them running. The script lists them
+  by name: **if you load a corpus under a dataset name of your own, add it
+  there or teardown will miss it silently.**
 
 Spanner is the one to watch if you keep the data: ~$0.123/hr, ~$21/week, and it
 bills whether or not anyone queries it.

@@ -1,7 +1,7 @@
 """Generate the detection dashboard as one self-contained HTML file.
 
     python labs/dashboard.py                      # -> dashboard.html
-    TRAJECTORY_DATASET=trajectory_real python labs/dashboard.py
+    TRAJECTORY_DATASET=trajectory_37 python labs/dashboard.py
 
 WHY THIS EXISTS RATHER THAN A HOSTED APP
 The four views are the dashboard; this only renders them. A hosted UI would need
