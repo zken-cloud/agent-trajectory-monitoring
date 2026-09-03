@@ -365,7 +365,7 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 ### Still open
 
-- **Slides (B14).** The lab guide is written and hosted; there is no slide deck. The narrative exists — README's assurance argument, the gap worksheet, the ladder — but nobody has built the deck that carries the non-lab half of the day (opening threat model, Crescendo background, the Wiz/enterprise-destination discussion, the wrap).
+- **Slides (B14) — outlined, not built.** `slides/OUTLINE.md` is the slide-by-slide plan for all ~51 slides, with the beat and the measured number for each. What remains is turning it into an actual deck.
 - **Looker Studio copy check.** `preflight.sh` marks it `[MANUAL]` and cannot do better: it needs a browser and an attendee-shaped account to confirm an externally-shared report can be opened and copied. Verify once against a real Argolis account before relying on the B12 handover path.
 - **Re-run the clean-project preflight a few days before delivery.** Not a defect — a habit. The Layer 3 connection bug survived for weeks precisely because nobody applied to a clean project, and anything created by hand between now and the day will be invisible the same way.
 
