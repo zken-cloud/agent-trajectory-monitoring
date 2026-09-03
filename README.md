@@ -95,7 +95,7 @@ Everything above runs offline via `./run_all.sh`.
 | 1 | D1 refund / D3 loop / D4 aggregate | 1 each | 1 | 0 | **100%** | 17% | yes |
 | 2 | L2 shape (KMEANS) | 10 | 3 | 7 | 30% | 50% | no |
 | 2 | L2 transition surprisal | 13 | 2 | 11 | 15% | 33% | no |
-| 3 | L3 judge — `gemini-3.7-flash`, in BigQuery | 32 | 5 | 27 | 15.6% | 83% | no |
+| 3 | L3 judge — `gemini-3.7-flash`, in BigQuery | 26 | 5 | 21 | 19.2% | 83% | no |
 
 The judge runs **inside BigQuery on `gemini-3.7-flash`**, and getting there is
 a trap worth knowing. `AI.GENERATE_BOOL` resolves a **bare** model name against
@@ -115,7 +115,8 @@ so this is not a silent fallback to the default. This removed the reason
 real (trajectories not in BigQuery, decoupling inference from data project).
 
 Moving 2.5 → 3.7 traded recall for precision: **6/6 → 5/6** recall,
-**5.6% → 15.6%** precision, benign flagged **102 → 27**. The miss is **A5**, and
+**5.6% → 19.2%** precision, benign flagged **102 → 21** (full-ladder run,
+310-session judged sample). The miss is **A5**, and
 it is the right thing to miss — repeating a read-only diagnostic is an
 operational anomaly, not a policy breach, and D3 catches it deterministically at
 Layer 1. A6 still fires, which is what keeps Layer 3 justified.

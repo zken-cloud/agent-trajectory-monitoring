@@ -128,16 +128,18 @@ That gap — *operational observability is not security detection* — is the tr
 
 Deploy the same agent to GKE, then instrument it. This lab has the widest audience spread (security folks need ADK grounding, platform folks need threat grounding), so it's structured as *plugin gets you most of the way, callbacks get you the security-relevant rest*.
 
-**Path A — the ADK BigQuery Agent Analytics plugin.** Captures execution to BigQuery via the Storage Write API, batched async, auto-creating ~18 per-event-type views (`v_llm_request`, `v_llm_response`, `v_tool_starting`, `v_tool_completed`, `v_agent_starting`, …) with identity headers (`session_id`, `invocation_id`, `user_id`, `trace_id`) already unnested. It also records **tool-call origin** — local function vs MCP server vs sub-agent vs A2A remote — which is a detection signal in its own right.
+**Path A — the ADK BigQuery Agent Analytics plugin.** BUILT and registered in `harness/run.py`. Captures execution to BigQuery via the Storage Write API, batched async, auto-creating an `agent_events` table and **23** per-event-type views (`v_llm_request`, `v_llm_response`, `v_tool_starting`, `v_tool_completed`, `v_agent_starting`, …) across 28 event types, with identity headers (`session_id`, `invocation_id`, `user_id`, `trace_id`) already unnested. Measured live: `trace_id` populated on **100%** of events. It also records **tool-call origin** — local function vs MCP server vs sub-agent vs A2A remote — which is a detection signal in its own right, and which supersedes the `origin` field we used to set by hand.
 
 Roughly 80% of the required telemetry from a plugin registration. That's deliberate: it buys time for the 20% that carries the security value.
+
+Two gotchas, both silent: `enable_otel_correlation` **defaults to `False`** (leave it off and there is no `trace_id`, so nothing joins to Cloud Trace), and `flush()` is a **coroutine** — calling it bare drops the batch at process exit.
 
 **Path B — ADK callbacks, the security-relevant 20%.** This is the part to teach slowly and the part attendees will reuse at customers. Each callback maps to one of the four telemetry classes in the brief:
 
 | Callback | Captures | Telemetry class |
 |---|---|---|
 | `before_model` | Prompt composition; **which tool results are in context** | Enables the taint edge in §4.3 |
-| `after_model` | Structured **reasoning summary**, finish reason, token counts | Model CoT |
+| `after_model` | Structured **reasoning summary**, finish reason | Model CoT |
 | `before_tool` | **Decision record** — tool, args, model's stated justification | Tool call decision |
 | `after_tool` | Outcome, error class, **data-sensitivity tag** from what was touched | Tool call outcome |
 | session end | Resolved / escalated / abandoned + goal-satisfaction verdict | Multi-turn outcome |
@@ -291,9 +293,9 @@ Enforcement decisions are themselves telemetry: a `blocked` outcome flows into B
 |---|---|---|
 | 09:00 | 0:20 | Opening — agentic threat model, OWASP ASI, portability framing (§0) |
 | 09:20 | 0:15 | Bootstrap: `terraform apply` + smoke test; **Spanner T2 load kicks off in background** |
-| 09:35 | 1:10 | **Scenario 1** — Agent Engine, native observability, gap analysis |
+| 09:35 | 1:10 | **Scenario 1** — Agent Engine; gap analysis against the FULL native surface (Application Monitoring, Observability Analytics, Cloud Trace) |
 | 10:45 | 0:15 | Break |
-| 11:00 | 1:00 | **Lab 2.1** — GKE deploy, ADK callbacks, Pub/Sub pipeline via IaC |
+| 11:00 | 1:00 | **Lab 2.1** — GKE deploy; native plane (Path A), the security 20% (Path B), joining the three telemetry planes; Pub/Sub pipeline via IaC |
 | 12:00 | 0:45 | **Lab 2.2** — Red team + manual investigation |
 | 12:45 | 0:45 | Lunch |
 | 13:30 | 1:05 | **Lab 2.3** — Trajectory graph as an investigation tier |
@@ -323,11 +325,14 @@ Collapsing five detection layers to three (§1) freed the 25 minutes that Lab 2.
 | B5 | **Tiered corpus (§2.3)** | T1 2k+200 in BQ; T2 300 stratified in Spanner; **validation gate first** |
 | B6 | **Terraform, modularised by concern** | `agent-runtime/`, `telemetry-pipeline/`, `graph-store/`, `detections/`; targets a BYO Argolis project |
 | B7 | **ADK telemetry adapter package** | `pip install` + one-line registration. Never lab snippets — a copy-paste pattern creates FDE work at every customer forever |
+| B7a | **Native plane registration (Path A)** | The ADK BigQuery Agent Analytics plugin, registered ahead of ours in `harness/run.py`. This is the 80%, and it is Google's code — our package only has to carry what nothing native provides (`context_tool_call_ids`) |
 | B7b | **Enforcement middleware** | `before_tool` blocking, ADK. Shadow / approve / block modes |
 | B7c | Porting guide (docs only, no code) | Signal-by-signal mapping to other frameworks, so a second adapter is a day's work when a customer needs one (ARCHITECTURE.md §4.1) |
 | B8 | Graph ETL | BQ → Spanner, incl. deriving `FLOWED_INTO` |
 | B9 | Detection SQL | D1/D3/D5 complete; D2/D4 as guided exercises + reference solutions |
+| B9b | **Non-security views** | `v_session_cost`, `v_agent_quality`, `v_tool_health` — cost, quality and reliability off the native plane. The tier that makes this trajectory monitoring rather than a security product with telemetry in it |
 | B10 | Per-lab catch-up scripts | **Non-negotiable.** Every lab starts from seeded state |
+| B10b | **Corpus load + site deploy scripts** | `labs/load_corpus.sh` (offline jsonl → BigQuery, creating tables from the schema contract so Terraform does not later plan a delete/create) and `labs/deploy_site.sh` (rebuild + deploy, pinning the `--ingress` that is the only thing keeping the guide behind IAP) |
 | B11 | Tool manifest schema | The config file a customer edits first (§0) |
 | B11b | **Version columns in the schema** | `agent_version` + `baseline_version` on every trajectory row and baseline model. Not exercised in any lab — but the schema must not preclude it (§6.1) |
 | B12 | **Looker Studio template** (4 pages) | Shipped pre-built; attendees copy + repoint in ~5 min. See ARCHITECTURE.md §8 |
@@ -360,8 +365,14 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 ### Still open
 
-- **Corpus generation model + budget** for B5 (~13k calls). Needs a number before B4/B5 start.
-- **Argolis quota/org-policy verification** (see §6) — cheapest possible thing to get wrong, most expensive to discover on the day.
+- **Argolis quota/org-policy verification** (see §6) — cheapest possible thing to get wrong, most expensive to discover on the day. `labs/preflight.sh` exists and has never been run end-to-end on a clean attendee project. **This is the last blocking item.**
+- **`attack_real` is stale** — the real-model attack corpus was generated on `gemini-3.6-flash` and predates the 3.7 migration.
+
+### Resolved since
+
+- **Corpus generation model + budget** — settled. Real corpus is 1,730 sessions on `gemini-3.7-flash` (`corpus_real_37`, dataset `trajectory_37`), generated by `traffic/generate.py --model gemini-3.7-flash`. Vertex **quota**, not wall clock, is the binding constraint: concurrency 6 is stable with retry/backoff, concurrency 8 returns 429s.
+- **Model choice** — `gemini-3.7-flash` throughout, including the in-BigQuery judge. `gemini-2.5-flash` retires 2026-10-16 and is gone from the repo. There is no model-comparison corpus any more; see the assurance framing in README.
+- **The `AI.GENERATE_BOOL` regional constraint** — was never a constraint, only an endpoint *form*. Pass the fully-qualified global resource path.
 
 ---
 
