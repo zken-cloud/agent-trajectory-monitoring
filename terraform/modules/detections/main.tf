@@ -5,7 +5,7 @@ variable "dataset_id" { type = string }
 # THE BIGQUERY AI CONNECTION - without this, Layer 3 does not exist.
 #
 # Terraform did not create this, and a clean-project test is what found it:
-# `terraform apply` succeeded on a fresh Argolis project, everything looked
+# `terraform apply` succeeded on a fresh sandbox project, everything looked
 # healthy, and then AI.GENERATE_BOOL failed because the connection it names had
 # never been made. run_detections.sh defaults to "$PROJECT.us.trajectory_ai" and
 # sql/layer3/judge.sql passes it as connection_id, so on a fresh attendee

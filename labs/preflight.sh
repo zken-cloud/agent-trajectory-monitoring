@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run THREE DAYS BEFORE the workshop, not on the day.
-# 40 independent Argolis projects means 40 chances an org policy blocks something;
+# 40 independent sandbox projects means 40 chances an org policy blocks something;
 # discovering that at 09:20 with 39 people waiting is the worst outcome available.
 set -uo pipefail
 P="${GOOGLE_CLOUD_PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
@@ -16,7 +16,7 @@ echo "APIs:"
 #
 # Match the WHOLE service name. `grep "^container"` also matches
 # containeranalysis and containerthreatdetection, both of which are on by
-# default in a fresh Argolis project - so container.googleapis.com reported
+# default in a fresh sandbox project - so container.googleapis.com reported
 # [ OK ] while GKE was not enabled at all. A false OK is worse than a FAIL:
 # it sends the attendee into `adk deploy gke` to meet a confusing permission
 # error instead of fixing the API here. Same trap for bigquery*, cloudbuild*.

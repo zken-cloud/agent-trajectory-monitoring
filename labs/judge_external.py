@@ -22,14 +22,14 @@ WHAT THIS RUNNER IS STILL FOR - two real cases, neither of them the old one:
 
 2. Data project and inference project must be decoupled. Adversarial
    *generation* is allowlisted per project - asked to write a Crescendo attack
-   for an authorised workshop, zken-genai complied and trajectory-monitoring
+   for an authorised workshop, one project complied and another
    refused outright (model-level refusal, safetyRatings empty). That affects
    redteam/attacks.py, NOT the judge: both projects judge correctly. But the
    decoupling this runner demonstrates is how you would handle it.
 
     python labs/judge_external.py \\
-        --source-project trajectory-monitoring \\
-        --inference-project zken-genai \\
+        --source-project <DATA_PROJECT_ID> \\
+        --inference-project <INFERENCE_PROJECT_ID> \\
         --model gemini-3.7-flash --location global
 """
 from __future__ import annotations

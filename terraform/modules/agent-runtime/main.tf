@@ -73,7 +73,7 @@ resource "google_compute_subnetwork" "agent" {
 # STANDING DECISION: every VM in this lab is private-IP-only. Egress to Google
 # APIs and the internet goes through Cloud NAT. Do not "simplify" this away.
 #
-# It started as a workaround - Argolis, and most enterprise orgs, enforce
+# It started as a workaround - sandbox projects, and most enterprise orgs, enforce
 # constraints/compute.vmExternalIpAccess, and Autopilot nodes take an external
 # IP by default, so cluster creation fails:
 #   Constraint constraints/compute.vmExternalIpAccess violated for project ...

@@ -10,6 +10,11 @@ detection on GCP. One ADK agent, two runtimes, one detection plane.
 | [architecture.png](architecture.png) | Rendered reference architecture |
 | [LAB-GUIDE.md](LAB-GUIDE.md) | **Step-by-step attendee guide** |
 
+> **Intentionally vulnerable demo agent.** `agent/shopflow/` is the workshop's
+> victim agent and `redteam/attacks.py` is the attack suite that targets it.
+> Deploy them only in a throwaway project with synthetic data, never alongside
+> real customer data or in a shared environment.
+
 ## Quick start
 
 ```bash
@@ -45,6 +50,8 @@ labs/teardown.sh            kills the billing runtime; --all removes data too
 tests/test_capture.py       end-to-end capture test (A2 -> A3 chain)
 tests/test_dashboard.py     offline render test for the dashboard
 site/build.py               LAB-GUIDE.md -> the hosted lab guide site
+                            (labs/deploy_site.sh needs SITE_PROJECT, SITE_HOST and
+                            SITE_TOKEN - the gate token nginx checks - set in env)
 site/render_architecture.py mermaid in ARCHITECTURE.md -> architecture.png
 run_all.sh                  everything above, offline
 ```
@@ -86,7 +93,7 @@ Everything above runs offline via `./run_all.sh`.
 
 ## Measured on real BigQuery
 
-2,000 benign + 6 attack sessions, `trajectory-monitoring.trajectory`:
+2,000 benign + 6 attack sessions, `<PROJECT_ID>.trajectory`:
 
 | Layer | Rule | Flagged | TP | FP | Precision | Recall | Enforceable |
 |---|---|---|---|---|---|---|---|

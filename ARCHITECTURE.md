@@ -430,7 +430,7 @@ Four distinct visualisation needs, and they do **not** collapse into one tool. M
 
 ### Why a generated file is the lab path, and Looker the handover path
 
-Both render the same five views; they fail in different places. The Looker route needs a report shared across 40 separate Argolis tenancies, viewer copy permission left enabled, data-source *aliases* that only exist inside a report and can only be read in a browser, and an org policy that permits copying externally-shared reports — **none of which can be verified programmatically for someone else's project**, and all of which fail at 09:20 with 39 people waiting. `preflight.sh` can only mark it `[MANUAL]`.
+Both render the same five views; they fail in different places. The Looker route needs a report shared across 40 separate sandbox tenancies, viewer copy permission left enabled, data-source *aliases* that only exist inside a report and can only be read in a browser, and an org policy that permits copying externally-shared reports — **none of which can be verified programmatically for someone else's project**, and all of which fail at 09:20 with 39 people waiting. `preflight.sh` can only mark it `[MANUAL]`.
 
 `labs/dashboard.py` needs the BigQuery credentials preflight already checks. No server, no OAuth client, no sharing, no aliases. It is also the fastest loop in the workshop — edit SQL, re-run detections, regenerate, look — and `run_all.sh` renders it offline as a test.
 
@@ -463,6 +463,6 @@ This closes the Scenario 1 loop. Agent Engine handed attendees a token/latency/e
 
 ### Enterprise destination — parked, and the Wiz framing matters
 
-At a customer, agent findings should not live in a bespoke dashboard. They belong wherever the org's existing findings already go — **Wiz** most plausibly, or SCC / Google SecOps — so agent risk enters one triage queue. Parked as a slide, not a lab: all of them need licensing tiers Argolis generally lacks, and the `findings` table's unified schema is deliberately shaped to make that export straightforward later.
+At a customer, agent findings should not live in a bespoke dashboard. They belong wherever the org's existing findings already go — **Wiz** most plausibly, or SCC / Google SecOps — so agent risk enters one triage queue. Parked as a slide, not a lab: all of them need licensing tiers sandbox projects generally lack, and the `findings` table's unified schema is deliberately shaped to make that export straightforward later.
 
 **Say the distinction out loud, because the workshop invites the question.** Describing this as "a Wiz-style graph" to a customer who *runs* Wiz gets the obvious reply: *so why not just use Wiz?* The answer is good but has to be explicit — Wiz's graph is a **posture** graph over cloud configuration; this is a **runtime behaviour** graph over what the agent actually did, which a posture graph structurally cannot see. We are not rebuilding Wiz. We are producing the runtime signal it lacks and exporting findings into it so everything lands in one pane. Framed that way it strengthens the pitch; framed carelessly it sounds like reimplementing a product the customer already bought.

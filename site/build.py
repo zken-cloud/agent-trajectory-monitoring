@@ -1,4 +1,4 @@
-"""Render LAB-GUIDE.md into the static site served at trajectory.cedemo.app.
+"""Render LAB-GUIDE.md into the static site deployed by labs/deploy_site.sh.
 
     python site/build.py          # -> site/public/
 

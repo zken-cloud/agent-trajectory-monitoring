@@ -2,7 +2,7 @@
 
 **v1.0 — design plus a built, measured reference implementation.** All labs authored; every detection number in this document is measured, not estimated. See `README.md` for the results table and `LAB-GUIDE.md` for the attendee path.
 Audience: mixed security + platform engineers, delivering to their own customers afterwards.
-Duration: 7 hours contact time. Attendees bring their own Argolis project.
+Duration: 7 hours contact time. Attendees bring their own GCP sandbox project.
 
 Outcome an attendee can claim: *"I can instrument an agent so I can answer, after the fact, whether it was attacked — I have working detections for six attack classes, and I can redeploy the whole pipeline into a customer environment from Terraform."*
 
@@ -186,7 +186,7 @@ Edges:   (Principal)   -[:STARTED]->      (Session)
 **Spanner physical design** (also a portable lesson for customers):
 
 - **Interleave the trajectory tables** — `Invocation` in `Session`, `LlmCall`/`ToolCall` in `Invocation`. Every trajectory query is session-scoped, so interleaving puts a whole trajectory in one split.
-- **100 processing units.** ~200k edges is nothing for Spanner. Terraform pins 100 PU (~$0.09/hr regional); tell attendees explicitly not to provision a full node, because Argolis budgets are real.
+- **100 processing units.** ~200k edges is nothing for Spanner. Terraform pins 100 PU (~$0.09/hr regional); tell attendees explicitly not to provision a full node, because sandbox budgets are real.
 - **Index the taint query's entry points** — `Tool.is_egress`, `DataAsset.trust_label`. Tiny tables, but that's where path search starts.
 
 **The graph is an investigation tier, not a detection tier.** This distinction is load-bearing and the lab is built around it.
@@ -323,8 +323,8 @@ Collapsing five detection layers to three (§1) freed the 25 minutes that Lab 2.
 | B3 | Attack suite A1–A6 | Scripted, deterministic, re-runnable |
 | B4 | Benign traffic generator | Persona/intent-driven; diversity is the requirement |
 | B5 | **Tiered corpus (§2.3)** | T1 2k+200 in BQ; T2 300 stratified in Spanner; **validation gate first** |
-| B6 | **Terraform, modularised by concern** | `agent-runtime/`, `telemetry-pipeline/`, `graph-store/`, `detections/`; targets a BYO Argolis project |
-| B7 | **ADK telemetry adapter package** | `pip install` + one-line registration. Never lab snippets — a copy-paste pattern creates FDE work at every customer forever |
+| B6 | **Terraform, modularised by concern** | `agent-runtime/`, `telemetry-pipeline/`, `graph-store/`, `detections/`; targets a BYO GCP sandbox project |
+| B7 | **ADK telemetry adapter package** | `pip install` + one-line registration. Never lab snippets — a copy-paste pattern creates support work at every customer forever |
 | B7a | **Native plane registration (Path A)** | The ADK BigQuery Agent Analytics plugin, registered ahead of ours in `harness/run.py`. This is the 80%, and it is Google's code — our package only has to carry what nothing native provides (`context_tool_call_ids`) |
 | B7b | **Enforcement middleware** | `before_tool` blocking, ADK. Shadow / approve / block modes |
 | B7c | Porting guide (docs only, no code) | Signal-by-signal mapping to other frameworks, so a second adapter is a day's work when a customer needs one (ARCHITECTURE.md §4.1) |
@@ -349,7 +349,7 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 **Build order is not arbitrary.** B5's validation gate comes before any lab content: if the corpus doesn't separate signal from noise, Lab 2.5 has nothing to show and that's a rewrite, not a fix. Sequence: B1–B4 → B5 + gate → B6–B9 → B10–B14.
 
-**Argolis-specific checks before build:** Spanner and Vertex AI quota in attendee projects; org-policy constraints on GKE Autopilot and public GCS reads (the T2 corpus is served from a public bucket); whether the shared Spanner backup/import path is permitted cross-project.
+**Sandbox-specific checks before build:** Spanner and Vertex AI quota in attendee projects; org-policy constraints on GKE Autopilot and public GCS reads (the T2 corpus is served from a public bucket); whether the shared Spanner backup/import path is permitted cross-project.
 
 ---
 
@@ -357,7 +357,7 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 | # | Decision | Resolution |
 |---|---|---|
-| 1 | Project topology | **BYO Argolis project** per attendee; prebuilt Terraform + images for fast start |
+| 1 | Project topology | **BYO GCP sandbox project** per attendee; prebuilt Terraform + images for fast start |
 | 2 | Graph store | **Spanner Graph.** No BigQuery fallback |
 | 3 | Audience | Mixed. Focus on the *solution* and its portability (§0); ADK callbacks taught explicitly (§4.1) |
 | 4 | Pub/Sub streaming | **Kept**, deployed via Terraform module for customer portability |
@@ -366,12 +366,12 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 ### Still open
 
 - **Slides (B14) — outlined, not built.** `slides/OUTLINE.md` is the slide-by-slide plan for all ~51 slides, with the beat and the measured number for each. What remains is turning it into an actual deck.
-- **Looker Studio copy check.** `preflight.sh` marks it `[MANUAL]` and cannot do better: it needs a browser and an attendee-shaped account to confirm an externally-shared report can be opened and copied. Verify once against a real Argolis account before relying on the B12 handover path.
+- **Looker Studio copy check.** `preflight.sh` marks it `[MANUAL]` and cannot do better: it needs a browser and an attendee-shaped account to confirm an externally-shared report can be opened and copied. Verify once against a real sandbox account before relying on the B12 handover path.
 - **Re-run the clean-project preflight a few days before delivery.** Not a defect — a habit. The Layer 3 connection bug survived for weeks precisely because nobody applied to a clean project, and anything created by hand between now and the day will be invisible the same way.
 
 ### Verified 2026-09-03 — no longer open
 
-- **Argolis quota/org-policy verification.** Run end-to-end on a genuinely fresh project (`trajectory-preflight-0903`, since deleted): `terraform apply` 39 added / 0 changed / 0 destroyed, then **PREFLIGHT PASS** on every automated check. It found two real bugs on the way — a false `[ OK ]` on the container API from a prefix-matching grep, and the missing BigQuery AI connection that left Layer 3 dead on arrival. `terraform destroy` then removed all 41 resources with nothing stranded.
+- **Sandbox quota/org-policy verification.** Run end-to-end on a genuinely fresh project (`trajectory-preflight-0903`, since deleted): `terraform apply` 39 added / 0 changed / 0 destroyed, then **PREFLIGHT PASS** on every automated check. It found two real bugs on the way — a false `[ OK ]` on the container API from a prefix-matching grep, and the missing BigQuery AI connection that left Layer 3 dead on arrival. `terraform destroy` then removed all 41 resources with nothing stranded.
 - **`attack_real`** regenerated on 3.7. See LAB-GUIDE 2.2.3 — the real agent refuses all six attacks, which is evidence about the model and explicitly *not* usable as detection ground truth.
 
 ### Resolved since
@@ -384,7 +384,7 @@ Agents change constantly: prompt edits, model upgrades, new tools. A transition 
 
 ## 8. Cost estimate
 
-List prices, us-central1, **per attendee project** unless stated. 40 participants, each on their own Argolis with a ~$2,000/month budget — so per-person cost is the only figure that binds, and it is not close to binding. Validate against the pricing calculator before quoting these to anyone — Autopilot per-vCPU rates in particular are regional and were not verified.
+List prices, us-central1, **per attendee project** unless stated. 40 participants, each on their own GCP sandbox project with a ~$2,000/month budget — so per-person cost is the only figure that binds, and it is not close to binding. Validate against the pricing calculator before quoting these to anyone — Autopilot per-vCPU rates in particular are regional and were not verified.
 
 ### 8.1 Workshop day (~8h of uptime)
 
@@ -401,7 +401,7 @@ List prices, us-central1, **per attendee project** unless stated. 40 participant
 | Pub/Sub, GCS, Artifact Registry, Logging | | ~$0.10 |
 | **Day total** | | **≈ $3–5** |
 
-Cheaper than it looks, for two reasons worth knowing: Agent Engine's free tier (50 vCPU-hr + 100 GB-hr per month) fully absorbs a morning of Scenario 1 in a per-attendee project, and BigQuery's 1 TiB/month query allowance fully absorbs the detection labs. **Across 40 participants that is roughly $160 for the day** — though since each brings their own Argolis project, the only number that matters is the per-person one.
+Cheaper than it looks, for two reasons worth knowing: Agent Engine's free tier (50 vCPU-hr + 100 GB-hr per month) fully absorbs a morning of Scenario 1 in a per-attendee project, and BigQuery's 1 TiB/month query allowance fully absorbs the detection labs. **Across 40 participants that is roughly $160 for the day** — though since each brings their own GCP sandbox project, the only number that matters is the per-person one.
 
 ### 8.2 Left running for one week (168h), nothing torn down
 
@@ -449,8 +449,8 @@ The corpus is not the expensive part. Tear the dev project's Spanner and GKE dow
 |---|---|---|
 | **Spanner provisioned as STANDARD edition** | **Hard failure — `CREATE PROPERTY GRAPH` is rejected and the graph lab cannot run at all** | Terraform pins `edition = "ENTERPRISE"`. Verified live: Spanner Graph is an Enterprise-only feature |
 | Spanner provisioned as 1 node (1,000 PU) not 100 PU | **10× — ~$207/attendee/week** | Terraform pins `processing_units = 100`; call it out in the lab guide |
-| GKE's $74.40/mo credit is per **billing account**, not per project | If Argolis projects share billing, only one cluster gets it | Assume no credit (as costed above); verify before the day |
-| Someone “simplifies” by dropping Cloud NAT and giving nodes external IPs | **Hard failure on Argolis** — `constraints/compute.vmExternalIpAccess` rejects cluster creation; and it is the wrong shape to hand a customer | Design decision, not a workaround: **every VM is private-IP-only, egress via Cloud NAT.** Terraform pins `enable_private_nodes = true` and `depends_on` the NAT so ordering cannot regress. Costed in §8.1/8.2 |
+| GKE's $74.40/mo credit is per **billing account**, not per project | If sandbox projects share billing, only one cluster gets it | Assume no credit (as costed above); verify before the day |
+| Someone “simplifies” by dropping Cloud NAT and giving nodes external IPs | **Hard failure on sandbox projects** — `constraints/compute.vmExternalIpAccess` rejects cluster creation; and it is the wrong shape to hand a customer | Design decision, not a workaround: **every VM is private-IP-only, egress via Cloud NAT.** Terraform pins `enable_private_nodes = true` and `depends_on` the NAT so ordering cannot regress. Costed in §8.1/8.2 |
 | Traffic generator left running | Unbounded inference spend | Hard max-iterations in the generator |
 | Layer 3 judge run over the full corpus in a loop | Grows fast from a small base | `LIMIT` in the lab query; ship full results pre-computed |
 | Nobody tears down | The $72 case in §8.2 | Budget alert at $25/project + `bash labs/teardown.sh` (runtime only; `--all` for everything) |
@@ -459,7 +459,7 @@ The single highest-leverage guardrail is the Terraform pin on Spanner processing
 
 ### 8.6 Budget verdict at 40 participants
 
-Against a ~$2,000/month per-person Argolis budget:
+Against a ~$2,000/month per-person sandbox budget:
 
 | Scenario | Per person | % of their monthly budget |
 |---|---|---|
@@ -478,24 +478,13 @@ Cost is not a design constraint for this workshop and should stop being treated 
 
 ---
 
-## 8.7 Hosted lab guide
-
-The guide is served at **https://trajectory.cedemo.app** — Cloud Run behind an
-HTTPS LB in `waap-demo-323809`, IAP restricted to `domain:google.com`, then a
-token gate (`trajectory`). Two live dashboards are published alongside it at
-`/demo` (scripted corpus) and `/demo-real` (live-model corpus) so attendees can
-see the finished product before Lab 0. Rebuild with `python site/build.py` and
-redeploy; the guide markdown is the only source.
-
----
-
 ## 9. Delivering to 40 — what actually binds
 
 At 40 participants the constraint moves off cost entirely. Three things bind instead.
 
 ### 9.1 Vertex AI quota is the real ceiling
 
-40 people hitting Gemini in the same region inside the same 45-minute lab window is the genuine scaling risk, and Argolis projects often ship with modest default generative-model quota.
+40 people hitting Gemini in the same region inside the same 45-minute lab window is the genuine scaling risk, and sandbox projects often ship with modest default generative-model quota.
 
 The spike is **Lab 2.5's Layer 3 judge**. If each attendee runs the judge over 300 sampled trajectories in a 20-minute window, that is ~12,000 calls across the room, ~600/min. Mitigation, mirroring the corpus-tiering logic in §2.3:
 
@@ -509,7 +498,7 @@ Live agent traffic (T3, ~180 calls per attendee across a 45-min lab) is not a co
 
 ### 9.2 Pre-flight validation, run days ahead — not on the day
 
-40 independent Argolis projects means 40 independent chances that someone's org policy blocks something. Discovering that at 09:20 with 39 people waiting is the single worst failure mode available to us.
+40 independent sandbox projects means 40 independent chances that someone's org policy blocks something. Discovering that at 09:20 with 39 people waiting is the single worst failure mode available to us.
 
 Ship a **`preflight.sh`** that attendees run at least three days before, reporting back:
 
@@ -520,7 +509,7 @@ Ship a **`preflight.sh`** that attendees run at least three days before, reporti
 
   This has an owner-side half that no attendee check can catch. The dashboard is
   built **once by us** and copied by everyone — attendees never build one — so
-  before the day: share the template so all 40 can reach it (Argolis org-only
+  before the day: share the template so all 40 can reach it (org-only
   sharing will not span their tenancies), and confirm *"Disable downloading,
   printing and copying for viewers"* is **off**, or every copy link fails. Both
   failure modes are invisible to the owner, who always has access. Verify by

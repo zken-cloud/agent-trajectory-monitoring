@@ -157,10 +157,10 @@ pip install -r agent/requirements.txt
 python data/make_seed.py            # 120 customers, 228 orders, 6 KB docs
 ```
 
-### 0.2 Your Argolis project
+### 0.2 Your GCP project
 
 ```bash
-export GOOGLE_CLOUD_PROJECT=<your-argolis-project>
+export GOOGLE_CLOUD_PROJECT=<PROJECT_ID>
 export GOOGLE_CLOUD_LOCATION=us-central1
 gcloud config set project $GOOGLE_CLOUD_PROJECT
 bash labs/preflight.sh              # run this THREE DAYS BEFORE the workshop
@@ -298,7 +298,7 @@ app = App(name="shopflow", root_agent=root_agent,
           plugins=[analytics, TrajectoryPlugin.from_env()])
 ```
 
-It ships as a package, not a snippet, because a copy-paste pattern creates FDE
+It ships as a package, not a snippet, because a copy-paste pattern creates support
 work at every customer forever.
 
 **Order is load-bearing.** ADK stops at the first plugin whose `before_tool`
@@ -502,7 +502,7 @@ Two things worth noticing:
   cost guardrail in the build, so it is enforced in code rather than documented.
 - **Every VM is private-IP-only.** The Autopilot cluster sets
   `enable_private_nodes = true` and egress goes through Cloud NAT
-  (`shopflow-router` / `shopflow-nat`). This is not just an Argolis workaround
+  (`shopflow-router` / `shopflow-nat`). This is not just a sandbox-project workaround
   for `constraints/compute.vmExternalIpAccess` — it is the posture your customer
   will run, it does not depend on how their org policy happens to be set, and
   the NAT gateway costs $0.044/hr. Note the `depends_on` from the cluster to the

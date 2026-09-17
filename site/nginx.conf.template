@@ -11,7 +11,8 @@ server {
 
     # The gate. IAP has already established WHO you are; this establishes that
     # you were given the token. The comparison lives here, server-side, so the
-    # value is never sent to a browser.
+    # value is never sent to a browser. ${SITE_TOKEN} is substituted from the
+    # environment when the container starts (nginx.conf.template -> envsubst).
     location = /token      { try_files /token.html =404; }
     location = /token.html { }
     location = /favicon.ico { access_log off; }
@@ -19,7 +20,7 @@ server {
 
     location / {
         set $gate "";
-        if ($cookie_site_token != "trajectory") { set $gate "wrong"; }
+        if ($cookie_site_token != "${SITE_TOKEN}") { set $gate "wrong"; }
         if ($cookie_site_token = "")            { set $gate "none"; }
         if ($gate = "wrong") { return 302 /token?e=1; }
         if ($gate = "none")  { return 302 /token; }

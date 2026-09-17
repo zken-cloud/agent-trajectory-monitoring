@@ -6,7 +6,8 @@
 # here for exactly that reason - build.py output is not committed, so a deploy
 # without a rebuild silently ships whatever was last built locally.
 #
-#   bash labs/deploy_site.sh
+#   SITE_PROJECT=<PROJECT_ID> SITE_HOST=<SITE_HOST> SITE_TOKEN=<gate-token> \
+#     bash labs/deploy_site.sh
 #
 # ############################################################################
 # THE --ingress FLAG IS A SECURITY CONTROL, NOT A PREFERENCE.
@@ -21,10 +22,13 @@
 # ############################################################################
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; cd "$ROOT"
-PROJECT="${SITE_PROJECT:-waap-demo-323809}"
+: "${SITE_PROJECT:?set SITE_PROJECT}"
+: "${SITE_HOST:?set SITE_HOST}"
+: "${SITE_TOKEN:?set SITE_TOKEN}"
+PROJECT="$SITE_PROJECT"
 REGION="${SITE_REGION:-us-central1}"
 SERVICE="${SITE_SERVICE:-trajectory-site}"
-HOST="${SITE_HOST:-trajectory.cedemo.app}"
+HOST="$SITE_HOST"
 
 echo "== Rebuild"
 python3 site/build.py
@@ -33,6 +37,7 @@ echo "== Deploy"
 gcloud run deploy "$SERVICE" --source site/ \
   --project="$PROJECT" --region="$REGION" \
   --ingress=internal-and-cloud-load-balancing \
+  --set-env-vars="SITE_TOKEN=$SITE_TOKEN" \
   --quiet
 
 echo "== Verify"
